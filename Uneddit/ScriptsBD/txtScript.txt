@@ -1,0 +1,53 @@
+Usuario 
+-id pk int
+-username varchar 50
+-email varchar 50
+-data de nascimento date 
+-foto usuario varbinary 
+-senha varbinary
+-salt varchar
+
+Forum
+-id pk int 
+-titulo varchar
+-descricao varchar
+-datacriado date
+-criador fk usuario
+
+ForumUsuario
+-id pk int
+-forum fk forum
+-usuarios fk usuario
+
+Post
+-id pk int
+-titulo varchar
+-conteudo varchar
+-anexo varbinary
+-autor fk usuario
+-forum fk forum
+
+Comentario
+-id pk int 
+-conteudo varchar
+-usuario fk usuario
+-post fk post
+
+Cargo 
+-id pk int 
+-nome
+-forum fk forum
+
+Permissao
+-id pk int
+-nome
+
+CargoPermissao
+-id pk int
+-cargo fk cargo
+-permissao fk permissao
+
+UpVote
+-id pk int 
+-post fk post
+-usuario fk usuario

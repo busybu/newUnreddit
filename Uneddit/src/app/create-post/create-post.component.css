@@ -1,0 +1,18 @@
+.app{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+mat-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30vw;
+}
+.example-full-width{
+    display: flex;
+    justify-content:flex-end;
+    align-items: center;
+    width: 90%;
+}
