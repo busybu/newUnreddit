@@ -1,16 +1,29 @@
 .app{
+    z-index: 100;
     width: 100%;
-    height: 80vh;
-    max-height: 80vh;
+    height: 92vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 mat-card{
-    width: 50vw
+    background-color: #33353f;
+    width: 25%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+input{
+    width: 80%;
 }
 mat-card-content{
+    width: 80%;
     display: flex;
     flex-direction: column;
-    
+}
+.last-informations{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }

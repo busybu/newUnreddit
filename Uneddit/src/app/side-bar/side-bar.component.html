@@ -1,1 +1,29 @@
+<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu"
+    style="color: rgb(169, 169, 169);">
+    <mat-icon>home</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+    <a href="/">
+        <button mat-menu-item>
+            <mat-icon>home</mat-icon>
+            <span>Home</span>
+        </button></a>
+    <a href="">
+        <button mat-menu-item>
+            <mat-icon>group_add</mat-icon>
+            <span>Criar Fórum</span>
+        </button>
+    </a>
+    <a href=""> <button mat-menu-item>
+            <mat-icon>settings</mat-icon>
+            <span>Configurações</span>
+        </button></a>
 
+    <a href="">
+        <button mat-menu-item>
+            <mat-icon>exit_to_app</mat-icon>
+            <span>Sair</span>
+        </button>
+    </a>
+
+</mat-menu>

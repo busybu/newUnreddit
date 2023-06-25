@@ -22,6 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { CreatePostComponent } from './create-post/create-post.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
     declarations: [
@@ -38,6 +40,8 @@ import { CreatePostComponent } from './create-post/create-post.component';
     ],
     bootstrap: [AppComponent],
     imports: [
+        MatMenuModule,
+        MatSelectModule,
         MatFormFieldModule,
         MatInputModule,
         NgIf,

@@ -1,0 +1,7 @@
+.content-divisor{
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+}
