@@ -4,8 +4,8 @@
             <h3>Cadastre-se:</h3>
             <br>
             <mat-form-field>
-                <mat-label>Name</mat-label>
-                <input matInput>
+                <mat-label>Nickname</mat-label>
+                <input matInput [(ngModel)]="data.username">
             </mat-form-field>
 
             <mat-form-field>
@@ -19,16 +19,7 @@
                     Email is <strong>required</strong>
                   </mat-error>
             </mat-form-field>
-
-            <mat-form-field>
-                <mat-label>Enter your password</mat-label>
-                <input matInput [type]="hide ? 'password' : 'text'">
-                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                    [attr.aria-pressed]="hide">
-                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-            </mat-form-field>
-
+            <app-create-password style="width: 100%;"></app-create-password>
             <mat-form-field>
                 <mat-label>Data de nascimento:</mat-label>
                 <input matInput [matDatepicker]="picker" id="dateBirth" value="" min="1901-01-01" max="{{today}}">
@@ -36,7 +27,7 @@
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
 
-            <button mat-raised-button color="primary">Cadastrar</button>
+            <button mat-raised-button color="primary" (click)="register()">Cadastrar</button>
         </mat-card-content>
     </mat-card>
 </div>

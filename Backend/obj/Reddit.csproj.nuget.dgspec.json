@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\gabri\\OneDrive\\Área de Trabalho\\Uneddit\\Backend\\Reddit.csproj": {}
+    "C:\\Users\\disrct\\Desktop\\AUNREDDIT\\newUnreddit\\Backend\\Reddit.csproj": {}
   },
   "projects": {
-    "C:\\Users\\gabri\\OneDrive\\Área de Trabalho\\Uneddit\\Backend\\Reddit.csproj": {
+    "C:\\Users\\disrct\\Desktop\\AUNREDDIT\\newUnreddit\\Backend\\Reddit.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gabri\\OneDrive\\Área de Trabalho\\Uneddit\\Backend\\Reddit.csproj",
+        "projectUniqueName": "C:\\Users\\disrct\\Desktop\\AUNREDDIT\\newUnreddit\\Backend\\Reddit.csproj",
         "projectName": "Reddit",
-        "projectPath": "C:\\Users\\gabri\\OneDrive\\Área de Trabalho\\Uneddit\\Backend\\Reddit.csproj",
-        "packagesPath": "C:\\Users\\gabri\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gabri\\OneDrive\\Área de Trabalho\\Uneddit\\Backend\\obj\\",
+        "projectPath": "C:\\Users\\disrct\\Desktop\\AUNREDDIT\\newUnreddit\\Backend\\Reddit.csproj",
+        "packagesPath": "C:\\Users\\disrct\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\disrct\\Desktop\\AUNREDDIT\\newUnreddit\\Backend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\gabri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\disrct\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

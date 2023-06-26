@@ -4,4 +4,4 @@ dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 dotnet tool install --global dotnet-ef
 dotnet ef dbcontext scaffold $strconn Microsoft.EntityFrameworkCore.SqlServer --force -o Model
     
-# BUMACHINE Uneddit
+# BUMACHINE Uneddit -- meu pc 

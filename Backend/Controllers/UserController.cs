@@ -7,21 +7,43 @@ using Model;
 using Uneddit.Repository;
 
 [ApiController]
-[Route("[controller]")]
+[Route("user")]
 public class UserController : ControllerBase
 {
-    [HttpPost("/register")]
-    public ActionResult<Usuario> Register(
+
+    [HttpPost("register")]
+    public async Task<ActionResult<Usuario>> Register(
+        [FromBody] UserRegisterDTO user,
+        [FromServices] IRepository<Usuario> repo
+    )
+    {
+        var UsuarioExistente = repo.Filter(u => u.Username == user.Username);
+        if(UsuarioExistente.Count() > 0)
+            return BadRequest("O nome já existe no banco de dados");
+
+        UsuarioExistente = repo.Filter(u => u.Email == user.Email);
+        if(UsuarioExistente.Count() > 0)
+            return BadRequest("O e-mail registrado já existe no banco de dados");
+        
+        // repo.Add(user);
+        return Ok();
+    }
+
+
+    [HttpPost("login")]
+    public async Task<ActionResult<Usuario>> Login(
         [FromBody] Usuario user,
         [FromServices] IRepository<Usuario> repo
     )
     {
-        var LisUsuarioExistente = repo.Filter(u => u.Username == user.Username);
-        if(LisUsuarioExistente.Count() > 0)
-            return BadRequest("Escolhe outro nome pae");
+        var query = repo.Filter(u => u.Email == user.Email);
+        if(query.Count() > 0)
+        {
+            return Ok();
+        }
 
-        repo.Add(user);
-        return Ok();
+        return NotFound();
     }
+
     
 }

@@ -24,6 +24,9 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatMenuModule} from '@angular/material/menu';
+import { CreatePasswordComponent } from './create-password/create-password.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -34,12 +37,14 @@ import {MatMenuModule} from '@angular/material/menu';
         NavComponent,
         SideBarComponent,
         RegisterPageComponent,
-        CreatePostComponent
+        CreatePostComponent,
+        CreatePasswordComponent
     ],
     providers: [
     ],
     bootstrap: [AppComponent],
     imports: [
+        MatProgressBarModule,
         MatMenuModule,
         MatSelectModule,
         MatFormFieldModule,
@@ -56,7 +61,8 @@ import {MatMenuModule} from '@angular/material/menu';
         MatIconModule,
         BrowserAnimationsModule,
         MatButtonModule,
-        MatCardModule
+        MatCardModule,
+        HttpClientModule
     ]
 })
 export class AppModule { }

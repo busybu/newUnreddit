@@ -14,4 +14,5 @@ export class LoginPageComponent {
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   hide = true;
   today;
+ 
 }
