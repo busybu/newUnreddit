@@ -26,7 +26,16 @@ mat-card{
 
 }
 
+mat-icon{
+    margin-left: 1rem;
+}
+button{
+    padding-right: 1rem;
+}
 .button-area
 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     width: 100%;
 }
