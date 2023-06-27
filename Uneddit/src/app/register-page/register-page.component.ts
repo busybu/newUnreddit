@@ -10,38 +10,42 @@ import { Router } from '@angular/router';
   templateUrl: './register-page.component.html',
   styleUrls: ['./register-page.component.css']
 })
-export class RegisterPageComponent
-{
+export class RegisterPageComponent {
   data: UserData =
-  {
-    email: '',
-    dataNascimento: new Date(),
-    password: '',
-    username: ''
-  }
-  constructor(@Inject(LOCALE_ID) private locale: string, 
+    {
+      email: '',
+      dataNascimento: new Date(),
+      password: '',
+      username: ''
+    }
+  passwordStrong = 0;
+  
+  constructor(@Inject(LOCALE_ID) private locale: string,
     private userService: UserService,
     private router: Router) {
     this.today = formatDate(Date.now(), 'yyyy-MM-dd', this.locale);
   }
-  
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   hide = true;
   today;
+
+  onPasswordStrongChanged(newValue: number)
+  {
+    this.passwordStrong = newValue;
+  }
+  
   register() {
+    if (this.passwordStrong < 7)
+    {
+      return;
+    }
+
+    if (!this.emailFormControl.valid)
+      return;
 
     this.userService.register(this.data)
       .subscribe(res => {
         this.router.navigate(["/"])
       })
-    // this.service.register(
-    //   {
-    //     username: this.username,
-    //     email: this.email,
-    //     password: this.password,
-    //     dataNascimento: this.dataNascimento
-    //   }
-    // )
-    
   }
 }
