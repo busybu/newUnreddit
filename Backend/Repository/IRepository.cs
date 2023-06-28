@@ -1,11 +1,11 @@
 using System.Linq.Expressions;
 
-namespace Uneddit.Repository;
+namespace Reddit.Repository;
 
 public interface IRepository<T>
 {
-    void Add(T obj);
-    void Update(T obj);
-    void Delete(T obj);
-    List<T> Filter(Expression<Func<T,bool>> exp);
+    Task Add(T obj);
+    Task Update(T obj);
+    Task Delete(T obj);
+    Task<List<T>> Filter(Expression<Func<T,bool>> exp);
 }

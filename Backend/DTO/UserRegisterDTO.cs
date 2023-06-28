@@ -1,4 +1,4 @@
-namespace Reddit.Model;
+namespace Reddit.DTO;
 
 public class UserRegisterDTO
 {

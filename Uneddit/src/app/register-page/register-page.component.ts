@@ -19,7 +19,7 @@ export class RegisterPageComponent {
       username: ''
     }
   passwordStrong = 0;
-  
+
   constructor(@Inject(LOCALE_ID) private locale: string,
     private userService: UserService,
     private router: Router) {
@@ -28,15 +28,14 @@ export class RegisterPageComponent {
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   hide = true;
   today;
+  responseMessage = "";
 
-  onPasswordStrongChanged(newValue: number)
-  {
+  onPasswordStrongChanged(newValue: number) {
     this.passwordStrong = newValue;
   }
-  
+
   register() {
-    if (this.passwordStrong < 7)
-    {
+    if (this.passwordStrong < 7) {
       return;
     }
 
@@ -45,7 +44,11 @@ export class RegisterPageComponent {
 
     this.userService.register(this.data)
       .subscribe(res => {
-        this.router.navigate(["/"])
+        this.responseMessage = res.message;
+        if (this.responseMessage == "") {
+          this.responseMessage = "Usuário Registrado"
+          this.router.navigate(["/"])
+        }
       })
   }
 }

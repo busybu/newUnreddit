@@ -1,7 +1,20 @@
 using Reddit.Model;
-using Uneddit.Repository;
+using Reddit.Repository;
+using Reddit.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "MainPolicy",
+        policy =>
+        {
+            policy
+                .AllowAnyHeader()
+                .AllowAnyOrigin()
+                .AllowAnyMethod();
+        });
+});
 
 // Add services to the container.
 
@@ -10,10 +23,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddTransient<UnedditContext>();
+builder.Services.AddScoped<UnedditContext>();
 builder.Services.AddTransient<IRepository<Usuario>, UserRepository>();
-
-
+builder.Services.AddTransient<ISecurityService, SecurityService>();
 
 var app = builder.Build();
 
@@ -29,5 +41,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors();
 
 app.Run();

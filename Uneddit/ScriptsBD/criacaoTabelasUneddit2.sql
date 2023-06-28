@@ -27,15 +27,12 @@ CREATE TABLE Forum (
   titulo VARCHAR(255) NOT NULL,
   descricao VARCHAR(255) NOT NULL,
   data_criado DATE,
-  criador INT,
   FOREIGN KEY (criador) REFERENCES Usuario(id)
 );
 go
 
 CREATE TABLE ForumUsuario (
   id INT IDENTITY PRIMARY KEY,
-  forum INT,
-  usuarios INT,
   FOREIGN KEY (forum) REFERENCES Forum(id),
   FOREIGN KEY (usuarios) REFERENCES Usuario(id)
 );
@@ -44,10 +41,8 @@ go
 CREATE TABLE Post (
   id INT IDENTITY PRIMARY KEY,
   titulo VARCHAR(255),
-  conteudo VARCHAR(255),
+  conteudo VARCHAR(255) NOT NULL,
   anexo VARBINARY,
-  autor INT,
-  forum INT,
   FOREIGN KEY (autor) REFERENCES Usuario(id),
   FOREIGN KEY (forum) REFERENCES Forum(id)
 );
@@ -55,9 +50,7 @@ go
 
 CREATE TABLE Comentario (
   id INT IDENTITY PRIMARY KEY,
-  conteudo VARCHAR(255),
-  usuario INT,
-  post INT,
+  conteudo VARCHAR(255) NOT NULL,
   FOREIGN KEY (usuario) REFERENCES Usuario(id),
   FOREIGN KEY (post) REFERENCES Post(id)
 );
@@ -65,8 +58,7 @@ go
 
 CREATE TABLE Cargo (
   id INT IDENTITY PRIMARY KEY,
-  nome VARCHAR(255),
-  forum INT,
+  nome VARCHAR(255) NOT NULL,
   FOREIGN KEY (forum) REFERENCES Forum(id)
 );
 go
@@ -79,8 +71,6 @@ go
 
 CREATE TABLE CargoPermissao (
   id INT IDENTITY PRIMARY KEY,
-  cargo INT,
-  permissao INT,
   FOREIGN KEY (cargo) REFERENCES Cargo(id),
   FOREIGN KEY (permissao) REFERENCES Permissao(id)
 );
@@ -88,8 +78,6 @@ go
 
 CREATE TABLE UpVote (
   id INT IDENTITY PRIMARY KEY,
-  post INT,
-  usuario INT,
   FOREIGN KEY (post) REFERENCES Post(id),
   FOREIGN KEY (usuario) REFERENCES Usuario(id)
 );

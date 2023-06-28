@@ -1,41 +1,42 @@
-namespace Uneddit.Repository;
-
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using Reddit.Model;
 
+namespace Reddit.Repository;
+
+using Microsoft.EntityFrameworkCore;
+using Model;
 
 public class UserRepository : IRepository<Usuario>
 {
 
     private UnedditContext ctx;
 
-    public UserRepository(UnedditContext ctx)
-    {
-        this.ctx = ctx;
-    }
+    public UserRepository(UnedditContext ctx) 
+        => this.ctx = ctx;
 
-    public void Add(Usuario obj)
+    public async Task Add(Usuario obj)
     {
         ctx.Usuarios.Add(obj);
-        ctx.SaveChangesAsync();
+        await ctx.SaveChangesAsync();
     }
 
-    public void Delete(Usuario obj)
+    public async Task Delete(Usuario obj)
     {
         ctx.Usuarios.Remove(obj);
-        ctx.SaveChangesAsync();
+        await ctx.SaveChangesAsync();
     }
 
-    public List<Usuario> Filter(Expression<Func<Usuario, bool>> exp)
+    public async Task<List<Usuario>> Filter(Expression<Func<Usuario, bool>> exp)
     {
-        return ctx.Usuarios.Where(exp.Compile()).ToList();
+        var query = ctx.Usuarios.Where(exp);
+        var list = await query.ToListAsync();
+        return list;
     }
 
-    public void Update(Usuario obj)
+    public async Task Update(Usuario obj)
     {
         ctx.Usuarios.Update(obj);
-        ctx.SaveChangesAsync();
+        await ctx.SaveChangesAsync();
     }
 }

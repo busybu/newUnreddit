@@ -35,19 +35,17 @@ public partial class UnedditContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=BUMACHINE;Initial Catalog=Uneddit;Integrated Security=True;TrustServerCertificate=true");
+        => optionsBuilder.UseSqlServer("Data Source=CT-C-00186\\SQLEXPRESS;Initial Catalog=Uneddit;Integrated Security=True;TrustServerCertificate=true");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Cargo>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Cargo__3213E83F2E15BB04");
+            entity.HasKey(e => e.Id).HasName("PK__Cargo__3213E83FD4F7CAAB");
 
             entity.ToTable("Cargo");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Forum).HasColumnName("forum");
             entity.Property(e => e.Nome)
                 .HasMaxLength(255)
@@ -56,39 +54,35 @@ public partial class UnedditContext : DbContext
 
             entity.HasOne(d => d.ForumNavigation).WithMany(p => p.Cargos)
                 .HasForeignKey(d => d.Forum)
-                .HasConstraintName("FK__Cargo__forum__34C8D9D1");
+                .HasConstraintName("FK__Cargo__forum__47DBAE45");
         });
 
         modelBuilder.Entity<CargoPermissao>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__CargoPer__3213E83F7B81D0CD");
+            entity.HasKey(e => e.Id).HasName("PK__CargoPer__3213E83FD57E3295");
 
             entity.ToTable("CargoPermissao");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Cargo).HasColumnName("cargo");
             entity.Property(e => e.Permissao).HasColumnName("permissao");
 
             entity.HasOne(d => d.CargoNavigation).WithMany(p => p.CargoPermissaos)
                 .HasForeignKey(d => d.Cargo)
-                .HasConstraintName("FK__CargoPerm__cargo__398D8EEE");
+                .HasConstraintName("FK__CargoPerm__cargo__4CA06362");
 
             entity.HasOne(d => d.PermissaoNavigation).WithMany(p => p.CargoPermissaos)
                 .HasForeignKey(d => d.Permissao)
-                .HasConstraintName("FK__CargoPerm__permi__3A81B327");
+                .HasConstraintName("FK__CargoPerm__permi__4D94879B");
         });
 
         modelBuilder.Entity<Comentario>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Comentar__3213E83F25A1AD7A");
+            entity.HasKey(e => e.Id).HasName("PK__Comentar__3213E83FD7BD59F0");
 
             entity.ToTable("Comentario");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Conteudo)
                 .HasMaxLength(255)
                 .IsUnicode(false)
@@ -98,22 +92,20 @@ public partial class UnedditContext : DbContext
 
             entity.HasOne(d => d.PostNavigation).WithMany(p => p.Comentarios)
                 .HasForeignKey(d => d.Post)
-                .HasConstraintName("FK__Comentario__post__31EC6D26");
+                .HasConstraintName("FK__Comentario__post__44FF419A");
 
             entity.HasOne(d => d.UsuarioNavigation).WithMany(p => p.Comentarios)
                 .HasForeignKey(d => d.Usuario)
-                .HasConstraintName("FK__Comentari__usuar__30F848ED");
+                .HasConstraintName("FK__Comentari__usuar__440B1D61");
         });
 
         modelBuilder.Entity<Forum>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Forum__3213E83F861A0E33");
+            entity.HasKey(e => e.Id).HasName("PK__Forum__3213E83F994D5C20");
 
             entity.ToTable("Forum");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Criador).HasColumnName("criador");
             entity.Property(e => e.DataCriado)
                 .HasColumnType("date")
@@ -129,39 +121,35 @@ public partial class UnedditContext : DbContext
 
             entity.HasOne(d => d.CriadorNavigation).WithMany(p => p.Forums)
                 .HasForeignKey(d => d.Criador)
-                .HasConstraintName("FK__Forum__criador__267ABA7A");
+                .HasConstraintName("FK__Forum__criador__398D8EEE");
         });
 
         modelBuilder.Entity<ForumUsuario>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__ForumUsu__3213E83F995970AE");
+            entity.HasKey(e => e.Id).HasName("PK__ForumUsu__3213E83FC1123ECD");
 
             entity.ToTable("ForumUsuario");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Forum).HasColumnName("forum");
             entity.Property(e => e.Usuarios).HasColumnName("usuarios");
 
             entity.HasOne(d => d.ForumNavigation).WithMany(p => p.ForumUsuarios)
                 .HasForeignKey(d => d.Forum)
-                .HasConstraintName("FK__ForumUsua__forum__29572725");
+                .HasConstraintName("FK__ForumUsua__forum__3C69FB99");
 
             entity.HasOne(d => d.UsuariosNavigation).WithMany(p => p.ForumUsuarios)
                 .HasForeignKey(d => d.Usuarios)
-                .HasConstraintName("FK__ForumUsua__usuar__2A4B4B5E");
+                .HasConstraintName("FK__ForumUsua__usuar__3D5E1FD2");
         });
 
         modelBuilder.Entity<Permissao>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Permissa__3213E83F33C93B9E");
+            entity.HasKey(e => e.Id).HasName("PK__Permissa__3213E83F8A9076B9");
 
             entity.ToTable("Permissao");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Nome)
                 .HasMaxLength(255)
                 .IsUnicode(false)
@@ -170,13 +158,11 @@ public partial class UnedditContext : DbContext
 
         modelBuilder.Entity<Post>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Post__3213E83F9607F0B6");
+            entity.HasKey(e => e.Id).HasName("PK__Post__3213E83FB893A20A");
 
             entity.ToTable("Post");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Anexo)
                 .HasMaxLength(1)
                 .HasColumnName("anexo");
@@ -193,43 +179,39 @@ public partial class UnedditContext : DbContext
 
             entity.HasOne(d => d.AutorNavigation).WithMany(p => p.Posts)
                 .HasForeignKey(d => d.Autor)
-                .HasConstraintName("FK__Post__autor__2D27B809");
+                .HasConstraintName("FK__Post__autor__403A8C7D");
 
             entity.HasOne(d => d.ForumNavigation).WithMany(p => p.Posts)
                 .HasForeignKey(d => d.Forum)
-                .HasConstraintName("FK__Post__forum__2E1BDC42");
+                .HasConstraintName("FK__Post__forum__412EB0B6");
         });
 
         modelBuilder.Entity<UpVote>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__UpVote__3213E83F8088C7EB");
+            entity.HasKey(e => e.Id).HasName("PK__UpVote__3213E83FB12B3DBC");
 
             entity.ToTable("UpVote");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Post).HasColumnName("post");
             entity.Property(e => e.Usuario).HasColumnName("usuario");
 
             entity.HasOne(d => d.PostNavigation).WithMany(p => p.UpVotes)
                 .HasForeignKey(d => d.Post)
-                .HasConstraintName("FK__UpVote__post__3D5E1FD2");
+                .HasConstraintName("FK__UpVote__post__5070F446");
 
             entity.HasOne(d => d.UsuarioNavigation).WithMany(p => p.UpVotes)
                 .HasForeignKey(d => d.Usuario)
-                .HasConstraintName("FK__UpVote__usuario__3E52440B");
+                .HasConstraintName("FK__UpVote__usuario__5165187F");
         });
 
         modelBuilder.Entity<Usuario>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Usuario__3213E83F3DE1C280");
+            entity.HasKey(e => e.Id).HasName("PK__Usuario__3213E83FBA197851");
 
             entity.ToTable("Usuario");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.DataNascimento)
                 .HasColumnType("date")
                 .HasColumnName("data_nascimento");
@@ -245,7 +227,7 @@ public partial class UnedditContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("salt");
             entity.Property(e => e.Senha)
-                .HasMaxLength(1)
+                .HasMaxLength(150)
                 .HasColumnName("senha");
             entity.Property(e => e.Username)
                 .HasMaxLength(50)
