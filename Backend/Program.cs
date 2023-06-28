@@ -1,6 +1,7 @@
 using Reddit.Model;
 using Reddit.Repository;
 using Reddit.Services;
+using Security.Jwt;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,11 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<UnedditContext>();
 builder.Services.AddTransient<IRepository<Usuario>, UserRepository>();
 builder.Services.AddTransient<ISecurityService, SecurityService>();
+
+builder.Services.AddTransient<IPasswordProvider>(p => {
+    return new PasswordProvider("gabugabu");
+});
+builder.Services.AddTransient<IJwtService, JwtService>();
 
 var app = builder.Build();
 

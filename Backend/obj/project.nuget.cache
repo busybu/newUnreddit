@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "4OQpX43E1sd7fyM7Lb1lquPdRfuFnc8Vxev4kvzg8wT08+jbb0yb9CAI2mFgLOQ/xwQwyINqJdVxip4qi0+mdg==",
+  "dgSpecHash": "GsNgTtUMBBsxenq+zhcSUlQIl6rixaXeg9AejCjOraay2wMl/VqtG9RuqP99kc1HB/wSx0kmWgQzIQ7Ejif2Ag==",
   "success": true,
   "projectFilePath": "C:\\Users\\disrct\\Desktop\\AUNREDDIT\\newUnreddit\\Backend\\Reddit.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\disrct\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\disrct\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\disrct\\.nuget\\packages\\calisario-security-jwt\\0.1.1\\calisario-security-jwt.0.1.1.nupkg.sha512",
     "C:\\Users\\disrct\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\disrct\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.4\\microsoft.aspnetcore.openapi.7.0.4.nupkg.sha512",
     "C:\\Users\\disrct\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",

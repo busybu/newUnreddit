@@ -8,6 +8,7 @@ using DTO;
 using Repository;
 using Services;
 using Microsoft.AspNetCore.Cors;
+using Security.Jwt;
 
 [ApiController]
 [Route("user")]
@@ -22,11 +23,7 @@ public class UserController : ControllerBase
         [FromServices] ISecurityService security
     )
     {
-        if (user.Email == "" || user.Username == "" || user.Password == "")
-            return Ok(new ErrorDTO("Existem campos que não foram preenchidos."));
-
         var UsuarioExistente = await repo.Filter(u => u.Username == user.Username);
-
         if (UsuarioExistente.Count() > 0)
             return Ok(new ErrorDTO("O nome já existe no banco de dados."));
 
@@ -49,20 +46,26 @@ public class UserController : ControllerBase
 
         await repo.Add(newUser);
 
-        return Ok();
+        return Ok("Usuário Registrado");
     }
 
 
     [HttpPost("login")]
     public async Task<ActionResult<Usuario>> Login(
         [FromBody] Usuario user,
-        [FromServices] IRepository<Usuario> repo
-    )
+        [FromServices] ISecurityService security,
+        [FromServices] IRepository<Usuario> repo,
+        [FromServices] IJwtService jwtService
+     )
     {
-        var query = await repo.Filter(u => u.Email == user.Email);
-        if (query.Count() > 0)
+        var usertoBeCompared = new LoginDTO();
+
+        var usersQuery = await repo.Filter(u => u.Email == user.Email);
+
+        usertoBeCompared.UserExist = usersQuery.Count() > 0;
+        if (usersQuery.Count() == 0)
         {
-            return Ok();
+            return Ok("Usuário não existe.");
         }
 
         return NotFound();
