@@ -7,8 +7,10 @@ using Model;
 using DTO;
 using Repository;
 using Services;
+
 using Microsoft.AspNetCore.Cors;
 using Security.Jwt;
+
 
 [ApiController]
 [Route("user")]
@@ -46,30 +48,49 @@ public class UserController : ControllerBase
 
         await repo.Add(newUser);
 
-        return Ok("Usuário Registrado");
+        return Ok(new ErrorDTO("Usuário Registrado"));
     }
 
 
     [HttpPost("login")]
-    public async Task<ActionResult<Usuario>> Login(
-        [FromBody] Usuario user,
+    public async Task<ActionResult<Jwt>> Login(
+        [FromBody] UserLoginDTO userLogin,
         [FromServices] ISecurityService security,
         [FromServices] IRepository<Usuario> repo,
         [FromServices] IJwtService jwtService
      )
     {
-        var usertoBeCompared = new LoginDTO();
+        var userExistenceToBeCompared = new LoginDTO();
 
-        var usersQuery = await repo.Filter(u => u.Email == user.Email);
+        var usersQuery = await repo.Filter(u => u.Email == userLogin.Email);
 
-        usertoBeCompared.UserExist = usersQuery.Count() > 0;
-        if (usersQuery.Count() == 0)
+        userExistenceToBeCompared.UserExist = usersQuery.Count() > 0;
+        if(!userExistenceToBeCompared.UserExist)
+            return Ok(userExistenceToBeCompared);
+
+        Usuario target = usersQuery.First();
+
+        if(security.isPasswordEqualToPasswordBD(userLogin.Password, target.Senha, target.Salt))
         {
-            return Ok("Usuário não existe.");
+            string token = jwtService.GetToken<Jwt>(new Jwt{UserID = target.Id});
+
+            userExistenceToBeCompared.Jwt = token;
+            userExistenceToBeCompared.Sucess = true;
+            return Ok(userExistenceToBeCompared);
         }
 
-        return NotFound();
+        userExistenceToBeCompared.Sucess = false;
+        return Ok(userExistenceToBeCompared);
     }
 
-
+    // [HttpPost("validate")]
+    // public async Task<IActionResult<Jwt>> ValidateJwt(
+    //     [FromServices] ISecurityService Security,
+    //     [FromBody] JwtValue jwt
+    // )
+    // {
+    //     if(jwt.Value == null || jwt.Value is null)
+    //         return Ok(new Jwt{Authenticated = false});
+        
+    // }
 }

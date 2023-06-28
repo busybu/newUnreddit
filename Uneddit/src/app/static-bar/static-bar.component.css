@@ -1,0 +1,14 @@
+.bar{
+    background-color: azure;
+    width: 5vw;
+    height: 70vh;
+    border-radius:  0vw 25vw 25vw 0vw ;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.spacer{
+    height: 5vh;
+}

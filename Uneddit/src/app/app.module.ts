@@ -27,6 +27,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import { CreatePasswordComponent } from './create-password/create-password.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { HttpClientModule } from '@angular/common/http';
+import { ForumPageComponent } from './forum-page/forum-page.component';
+import { StaticBarComponent } from './static-bar/static-bar.component';
 
 @NgModule({
     declarations: [
@@ -38,7 +40,9 @@ import { HttpClientModule } from '@angular/common/http';
         SideBarComponent,
         RegisterPageComponent,
         CreatePostComponent,
-        CreatePasswordComponent
+        CreatePasswordComponent,
+        ForumPageComponent,
+        StaticBarComponent
     ],
     providers: [
     ],

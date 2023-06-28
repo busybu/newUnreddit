@@ -1,7 +1,7 @@
 import { Component, Inject, LOCALE_ID } from '@angular/core';
 import { formatDate } from '@angular/common';
 import { FormControl, Validators } from '@angular/forms';
-import { UserData } from '../user-data';
+import { UserData } from '../DataTransferObj/user-data';
 import { UserService } from '../user-service/user.service';
 import { Router } from '@angular/router';
 
@@ -35,9 +35,11 @@ export class RegisterPageComponent {
   }
 
   register() {
-    if (this.passwordStrong < 7) {
+    if (this.data.email == '' && this.data.username == '')
       return;
-    }
+
+    if (this.passwordStrong < 7)
+      return;
 
     if (!this.emailFormControl.valid)
       return;
@@ -45,10 +47,10 @@ export class RegisterPageComponent {
     this.userService.register(this.data)
       .subscribe(res => {
         this.responseMessage = res.message;
-        if (this.responseMessage == "") {
-          this.responseMessage = "Usuário Registrado"
+        if (this.responseMessage == "Usuário Registrado")
           this.router.navigate(["/"])
-        }
       })
+
+    this.responseMessage = "Existem campos que não foram preenchidos."
   }
 }

@@ -1,8 +1,10 @@
 .app{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
+    background-color: #212121;;
 }
 mat-card{
     display: flex;
@@ -16,7 +18,7 @@ mat-card{
 
 .mat-mdc-text-field-wrapper mdc-text-field ng-tns-c1205077789-0 mdc-text-field--filled
 {
-    background-color: #212121;
+    background-color: aliceblue;
 }
 .example-full-width{
     display: flex;
@@ -36,6 +38,6 @@ button{
 {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 100%;
 }

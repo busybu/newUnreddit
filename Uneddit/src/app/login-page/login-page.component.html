@@ -5,7 +5,8 @@
             <br>
             <mat-form-field>
                 <mat-label>Enter your email</mat-label>
-                <input type="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
+                <input type="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com" 
+                [(ngModel)]="data.email">
                 <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
                     Please enter a valid email address
                 </mat-error>
@@ -16,17 +17,19 @@
 
             <mat-form-field>
                 <mat-label>Enter your password</mat-label>
-                <input matInput [type]="hide ? 'password' : 'text'">
+                <input matInput [type]="hide ? 'password' : 'text'"
+                [(ngModel)]="data.password">
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                     [attr.aria-pressed]="hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
             </mat-form-field>
+            <h4 style="color: #f44336;">{{userState}}</h4>
             <div class="last-informations">
 
                 <h5 style="color: rgb(89, 86, 86);">Ainda não é usuário?</h5>
                 <a href="/register">Cadastre-se</a>
-                <button mat-raised-button color="primary" style="margin-left: 80%;margin-right: 5%;"
+                <button mat-raised-button color="primary" style="margin-left: 80%;margin-right: 5%; background-color:#9c5c96 ;"
                 (click)="verifyUser()">Enter</button></div>
         </mat-card-content>
     </mat-card>

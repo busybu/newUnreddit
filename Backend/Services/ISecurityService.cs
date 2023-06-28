@@ -5,4 +5,5 @@ public interface ISecurityService
 {
     string GenerateSalt();
     byte[] ApplyHash(string pass);
+    bool isPasswordEqualToPasswordBD(string pass, byte[] passHashedFromBd, string salt);
 }

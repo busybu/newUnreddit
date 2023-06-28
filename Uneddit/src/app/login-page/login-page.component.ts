@@ -1,7 +1,7 @@
 import { Component, Inject, LOCALE_ID } from '@angular/core';
 import { formatDate } from '@angular/common';
 import { FormControl, Validators } from '@angular/forms';
-import { LoginData } from '../login-data';
+import { LoginData } from '../DataTransferObj/login-data';
 import { UserService } from '../user-service/user.service';
 import { Router } from '@angular/router';
 
@@ -18,7 +18,7 @@ export class LoginPageComponent {
   }
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   hide = true;
- 
+  userState ='';
   constructor(private userService: UserService, private router: Router)
   {
 
@@ -28,7 +28,15 @@ export class LoginPageComponent {
     this.userService.login(this.data)
       .subscribe(res =>
         {
-          this.router.navigate(["/home/user"])
+          if(!res.sucess)
+            this.userState = "Usuário/Senha incorreto(a)"
+
+          if(res.jwt != null)
+          {
+            sessionStorage.setItem("session",  res.jwt)
+            this.router.navigate(["/"])
+          }
+          
         })
 
   }

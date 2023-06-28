@@ -26,4 +26,25 @@ public class SecurityService : ISecurityService
         Console.WriteLine(saltTo64);
         return saltTo64;
     }
+    public bool isPasswordEqualToPasswordBD(string pass, byte[] passHashedFromBd, string salt)
+    {
+        var passwordHashed = this.hash(pass, salt);
+
+        for (int i = 0; i < passHashedFromBd.Length; i++)
+        {   
+            if(passwordHashed[i] != passHashedFromBd[i])
+                return false; 
+        }
+        return true;
+    }
+    public byte[] hash(string pass, string salt)
+    {
+        using var sha = SHA256.Create();
+
+        var passwordSalty = pass + salt;
+        var passwordSaltyBytes = Encoding.UTF8.GetBytes(passwordSalty);
+        var hashBytes = sha.ComputeHash(passwordSaltyBytes);
+
+        return hashBytes;
+    }
 }

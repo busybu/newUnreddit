@@ -150,3 +150,4 @@ C:\Users\disrct\Desktop\AUNREDDIT\newUnreddit\Backend\obj\Debug\net7.0\scopedcss
 C:\Users\disrct\Desktop\AUNREDDIT\newUnreddit\Backend\obj\Debug\net7.0\Reddit.csproj.CopyComplete
 C:\Users\disrct\Desktop\AUNREDDIT\newUnreddit\Backend\obj\Debug\net7.0\Reddit.genruntimeconfig.cache
 C:\Users\disrct\Desktop\AUNREDDIT\newUnreddit\Backend\obj\Debug\net7.0\ref\Reddit.dll
+C:\Users\disrct\Desktop\AUNREDDIT\newUnreddit\Backend\bin\Debug\net7.0\security-jwt.dll
