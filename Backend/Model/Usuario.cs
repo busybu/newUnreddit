@@ -17,7 +17,7 @@ public partial class Usuario
 
     public byte[] Senha { get; set; } = null!;
 
-    public string? Salt { get; set; }
+    public string Salt { get; set; } = null!;
 
     public virtual ICollection<Comentario> Comentarios { get; set; } = new List<Comentario>();
 

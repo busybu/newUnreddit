@@ -30,6 +30,10 @@ export class RegisterPageComponent {
   today;
   responseMessage = "";
 
+  password(userPassword: string)
+  {
+   this.data.password = userPassword; 
+  }
   onPasswordStrongChanged(newValue: number) {
     this.passwordStrong = newValue;
   }
@@ -38,7 +42,7 @@ export class RegisterPageComponent {
     if (this.data.email == '' && this.data.username == '')
       return;
 
-    if (this.passwordStrong < 7)
+    if (this.passwordStrong < 3)
       return;
 
     if (!this.emailFormControl.valid)

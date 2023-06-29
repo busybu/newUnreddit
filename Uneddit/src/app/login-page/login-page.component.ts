@@ -28,6 +28,7 @@ export class LoginPageComponent {
     this.userService.login(this.data)
       .subscribe(res =>
         {
+          console.log(res)
           if(!res.sucess)
             this.userState = "Usuário/Senha incorreto(a)"
 

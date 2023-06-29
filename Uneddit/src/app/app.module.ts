@@ -30,9 +30,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { ForumPageComponent } from './forum-page/forum-page.component';
 import { StaticBarComponent } from './static-bar/static-bar.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { CreateForumComponent } from './create-forum/create-forum.component';
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 @NgModule({
     declarations: [
+
         AppComponent,
         PostUserComponent,
         FeedPageComponent,
@@ -44,12 +48,14 @@ import { HomePageComponent } from './home-page/home-page.component';
         CreatePasswordComponent,
         ForumPageComponent,
         StaticBarComponent,
-        HomePageComponent
+        HomePageComponent,
+        CreateForumComponent
     ],
     providers: [
     ],
     bootstrap: [AppComponent],
     imports: [
+        MatDialogModule,
         MatProgressBarModule,
         MatMenuModule,
         MatSelectModule,
@@ -68,7 +74,8 @@ import { HomePageComponent } from './home-page/home-page.component';
         BrowserAnimationsModule,
         MatButtonModule,
         MatCardModule,
-        HttpClientModule
+        HttpClientModule,
+        MatDialogModule
     ]
 })
 export class AppModule { }

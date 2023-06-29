@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
+import { CreateForumComponent } from '../create-forum/create-forum.component';
 
 @Component({
   selector: 'app-static-bar',
@@ -6,5 +9,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./static-bar.component.css']
 })
 export class StaticBarComponent {
+  constructor(public dialog: MatDialog) {}
 
+  openDialog() {
+    const dialogRef = this.dialog.open(CreateForumComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }

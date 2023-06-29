@@ -15,9 +15,10 @@ export class CreatePasswordComponent {
   protected repeat = "";
   protected passClassify = "";
   protected repeatEqualToPass = true;
-  
-  @Output() Strong = new EventEmitter<number>();
 
+  @Output() seePasswordChanged = new EventEmitter<string>();
+  @Output() Strong = new EventEmitter<number>();
+  
   public updateStrongBar() {
     let finalStrong = 1;
     if (this.password.length > 5)
@@ -57,6 +58,7 @@ export class CreatePasswordComponent {
     }
     this.strongfront = finalStrong;
     this.Strong.emit(finalStrong);
+    this.seePasswordChanged.emit(this.password);
   }
   protected updateRepeatCondition() {
     this.repeatEqualToPass = this.password === this.repeat

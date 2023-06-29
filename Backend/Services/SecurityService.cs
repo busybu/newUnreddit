@@ -6,14 +6,6 @@ namespace Reddit.Services;
 
 public class SecurityService : ISecurityService
 {
-    public byte[] ApplyHash(string pass)
-    {
-        using var sha = SHA256.Create();
-        var passwordBytes = Encoding.UTF8.GetBytes(pass);
-        var hashBytes = sha.ComputeHash(passwordBytes);
-        return hashBytes;
-    }
-
     public string GenerateSalt()
     {
         Random rd = new Random();
@@ -26,17 +18,23 @@ public class SecurityService : ISecurityService
         Console.WriteLine(saltTo64);
         return saltTo64;
     }
+    
     public bool isPasswordEqualToPasswordBD(string pass, byte[] passHashedFromBd, string salt)
     {
         var passwordHashed = this.hash(pass, salt);
+
+        Console.WriteLine(Convert.ToBase64String(passwordHashed));
+        Console.WriteLine(Convert.ToBase64String(passHashedFromBd));
 
         for (int i = 0; i < passHashedFromBd.Length; i++)
         {   
             if(passwordHashed[i] != passHashedFromBd[i])
                 return false; 
         }
+        
         return true;
     }
+
     public byte[] hash(string pass, string salt)
     {
         using var sha = SHA256.Create();

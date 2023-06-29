@@ -23,13 +23,13 @@ export class FeedPageComponent implements OnInit {
   ngOnInit(): void {
     let jwtAtual = sessionStorage.getItem("session") ?? ""
 
-    console.log(jwtAtual)
-
     if(jwtAtual == "") {
+      console.log("ue")
       this.router.navigate(["/home"])
     }
 
-    this.userService.getUser({ Value: jwtAtual })
+
+    this.userService.getUser({ value: jwtAtual })
       .subscribe({
         next: (res : UserInfo) => {
           this.userInfo = res

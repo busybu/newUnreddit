@@ -40,13 +40,16 @@ public class UserController : ControllerBase
         newUser.Username = user.Username;
 
         var salt = security.GenerateSalt();
-        var passwordSalty = user.Password + salt;
-        byte[] hash = security.ApplyHash(passwordSalty);
+        byte[] hash = security.hash(user.Password, salt);
 
         newUser.Salt = salt;
         newUser.Senha = hash;
 
         await repo.Add(newUser);
+
+        Console.WriteLine("Registro:");
+        Console.WriteLine(user.Password);
+        Console.WriteLine(newUser.Salt);
 
         return Ok(new ErrorDTO("Usuário Registrado"));
     }
@@ -60,30 +63,34 @@ public class UserController : ControllerBase
         [FromServices] IJwtService jwtService
      )
     {
-        var userExistenceToBeCompared = new LoginDTO();
+        var result = new LoginDTO();
 
         var usersQuery = await repo.Filter(u => u.Email == userLogin.Email);
 
-        userExistenceToBeCompared.UserExist = usersQuery.Count() > 0;
-        if (!userExistenceToBeCompared.UserExist)
-            return Ok(userExistenceToBeCompared);
+        result.UserExist = usersQuery.Count() > 0;
+        if (!result.UserExist)
+            return Ok(result);
 
         Usuario target = usersQuery.First();
+
+        Console.WriteLine("Login:");
+        Console.WriteLine(userLogin.Password);
+        Console.WriteLine(target.Salt);
 
         if (security.isPasswordEqualToPasswordBD(userLogin.Password, target.Senha, target.Salt))
         {
             string token = jwtService.GetToken<Jwt>(new Jwt { UserID = target.Id, Authenticated = true });
 
     
-            userExistenceToBeCompared.Jwt = token;
-            userExistenceToBeCompared.Sucess = true;
+            result.Jwt = token;
+            result.Sucess = true;
 
 
-            return Ok(userExistenceToBeCompared);
+            return Ok(result);
         }
 
-        userExistenceToBeCompared.Sucess = false;
-        return Ok(userExistenceToBeCompared);
+        result.Sucess = false;
+        return Ok(result);
     }
 
     [HttpPost("validate")]
@@ -115,6 +122,8 @@ public class UserController : ControllerBase
         [FromServices] IJwtService jwtService
     ) 
     {
+        System.Console.WriteLine("JWT: " + jwt.Value);
+
         Usuario user;
         try {
             var token = jwtService.Validate<Jwt>(jwt.Value);
@@ -122,10 +131,11 @@ public class UserController : ControllerBase
             if(!token.Authenticated)
                 return BadRequest("nao ta autenticado");
             
+            System.Console.WriteLine(token.UserID);
             var query = await userRepository.Filter(u => u.Id == token.UserID);
-            user = query.First();
+            user = query.FirstOrDefault();
         } 
-        catch {
+        catch (Exception e) {
             return BadRequest("invalido");
         }
 

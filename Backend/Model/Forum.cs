@@ -7,9 +7,9 @@ public partial class Forum
 {
     public int Id { get; set; }
 
-    public string? Titulo { get; set; }
+    public string Titulo { get; set; } = null!;
 
-    public string? Descricao { get; set; }
+    public string Descricao { get; set; } = null!;
 
     public DateTime? DataCriado { get; set; }
 

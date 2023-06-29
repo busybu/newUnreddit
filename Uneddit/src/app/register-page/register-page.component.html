@@ -12,9 +12,6 @@
             <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
                 Please enter a valid email address
             </mat-error>
-            <mat-error *ngIf="emailFormControl.hasError('required')">
-                    Please enter a email
-                </mat-error>
             <mat-form-field>
                 <mat-label>Enter your email</mat-label>
                 <input type="email" matInput [formControl]="emailFormControl" [(ngModel)]="data.email"
@@ -23,7 +20,7 @@
                 
             </mat-form-field>
 
-            <app-create-password (Strong)="onPasswordStrongChanged($event)" style="width: 100%;"></app-create-password>
+            <app-create-password (Strong)="onPasswordStrongChanged($event)"  (seePasswordChanged)="password($event)" style="width: 100%;"></app-create-password>
             
 
             <mat-form-field>
