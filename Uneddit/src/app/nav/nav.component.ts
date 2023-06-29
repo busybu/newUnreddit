@@ -8,7 +8,10 @@ import {NgIf} from '@angular/common';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css']
+  styleUrls: ['./nav.component.css'],
+  host: {
+    class:'mat-toolbar'
+},
 })
 export class NavComponent {
 

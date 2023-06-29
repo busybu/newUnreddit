@@ -1,7 +1,7 @@
 import { Component, Inject, LOCALE_ID } from '@angular/core';
 import { formatDate } from '@angular/common';
 import { FormControl, Validators } from '@angular/forms';
-import { LoginData } from '../DataTransferObj/login-data';
+import { LoginData } from '../DTO/login-data';
 import { UserService } from '../user-service/user.service';
 import { Router } from '@angular/router';
 
@@ -16,7 +16,7 @@ export class LoginPageComponent {
     email: "",
     password: ""
   }
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+  emailFormControl = new FormControl('', [Validators.required]);
   hide = true;
   userState ='';
   constructor(private userService: UserService, private router: Router)

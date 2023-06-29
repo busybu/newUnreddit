@@ -1,0 +1,98 @@
+.app{
+    width: 100%;
+    height: 80vh;
+    background-image: url("https://static.vecteezy.com/ti/fotos-gratis/p2/2942257-lindas-cores-do-arco-iris-no-ceu-azul-gratis-foto.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+}
+
+::ng-deep .mat-toolbar{
+    width: 100%;
+    position:absolute;
+    background-color: transparent;
+}
+p{
+    padding-top: 70vh;
+    padding-left: 10vw;
+    font-size: 8vw;
+    color: rgb(251, 255, 255);
+}
+.color-letter{
+    padding-top: 8vh;
+    
+    padding-left: 40%;
+
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap');
+
+
+
+ul {
+  position: relative;
+  display: flex;
+}
+
+li {
+  list-style: none;
+}
+
+label {
+  position: relative;
+}
+
+input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 100px;
+  width: 100px;
+  z-index: 100;
+}
+
+.letter {
+  position: relative;
+  height: 100px;
+  width: 100px;
+  background: #9CFFFA;
+  color: #000000;
+  display: flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 46px;
+  cursor: pointer;
+  margin: 0 4px;
+  border-radius: 20px;
+
+}
+
+ .letter:before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 75px;
+  height: 38px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+} 
+
+input[type="checkbox"]:checked ~ div {
+  box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.05),
+    inset 4px 4px 6px rgba(0, 0, 0, 0.2);
+  color: yellow;
+  text-shadow: 0 0 15px yellow, 0 0 25px yellow;
+  animation: glow 1.5s linear infinite;
+}
+
+@keyframes glow {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}

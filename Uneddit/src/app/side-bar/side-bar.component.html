@@ -1,5 +1,5 @@
 <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu"
-    style="color:#ffffff;">
+    style="color:#dddddd; background-color: transparent;">
     <mat-icon>home</mat-icon>
 </button>
 <mat-menu #menu="matMenu">
@@ -22,7 +22,7 @@
     <a href="">
         <button mat-menu-item>
             <mat-icon>exit_to_app</mat-icon>
-            <span>Sair</span>
+            <span (click)="out()">Sair</span>
         </button>
     </a>
 

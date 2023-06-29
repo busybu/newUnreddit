@@ -29,6 +29,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { ForumPageComponent } from './forum-page/forum-page.component';
 import { StaticBarComponent } from './static-bar/static-bar.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
     declarations: [
@@ -42,7 +43,8 @@ import { StaticBarComponent } from './static-bar/static-bar.component';
         CreatePostComponent,
         CreatePasswordComponent,
         ForumPageComponent,
-        StaticBarComponent
+        StaticBarComponent,
+        HomePageComponent
     ],
     providers: [
     ],

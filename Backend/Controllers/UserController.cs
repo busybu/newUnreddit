@@ -65,17 +65,20 @@ public class UserController : ControllerBase
         var usersQuery = await repo.Filter(u => u.Email == userLogin.Email);
 
         userExistenceToBeCompared.UserExist = usersQuery.Count() > 0;
-        if(!userExistenceToBeCompared.UserExist)
+        if (!userExistenceToBeCompared.UserExist)
             return Ok(userExistenceToBeCompared);
 
         Usuario target = usersQuery.First();
 
-        if(security.isPasswordEqualToPasswordBD(userLogin.Password, target.Senha, target.Salt))
+        if (security.isPasswordEqualToPasswordBD(userLogin.Password, target.Senha, target.Salt))
         {
-            string token = jwtService.GetToken<Jwt>(new Jwt{UserID = target.Id});
+            string token = jwtService.GetToken<Jwt>(new Jwt { UserID = target.Id, Authenticated = true });
 
+    
             userExistenceToBeCompared.Jwt = token;
             userExistenceToBeCompared.Sucess = true;
+
+
             return Ok(userExistenceToBeCompared);
         }
 
@@ -83,14 +86,59 @@ public class UserController : ControllerBase
         return Ok(userExistenceToBeCompared);
     }
 
-    // [HttpPost("validate")]
-    // public async Task<IActionResult<Jwt>> ValidateJwt(
-    //     [FromServices] ISecurityService Security,
-    //     [FromBody] JwtValue jwt
-    // )
-    // {
-    //     if(jwt.Value == null || jwt.Value is null)
-    //         return Ok(new Jwt{Authenticated = false});
-        
-    // }
+    [HttpPost("validate")]
+    public async Task<ActionResult<Jwt>> ValidateJwt(
+        [FromServices] IJwtService jwtService,
+        [FromBody] JwtValue jwt
+    )
+    {
+        if (jwt.Value == "" || jwt.Value is null)
+            return Ok(new Jwt { Authenticated = false });
+
+        try
+        {
+            var token = jwtService.Validate<Jwt>(jwt.Value);
+            token.Authenticated = true;
+            return Ok(token);
+        }
+        catch (Exception ex)
+        {
+            return Ok(new Jwt { Authenticated = false });
+        }
+
+    }
+
+    [HttpPost("get")]
+    public async Task<ActionResult<UserInfoDTO>> GetSingle(
+        [FromBody] JwtValue jwt,
+        [FromServices] IRepository<Usuario> userRepository,
+        [FromServices] IJwtService jwtService
+    ) 
+    {
+        Usuario user;
+        try {
+            var token = jwtService.Validate<Jwt>(jwt.Value);
+
+            if(!token.Authenticated)
+                return BadRequest("nao ta autenticado");
+            
+            var query = await userRepository.Filter(u => u.Id == token.UserID);
+            user = query.First();
+        } 
+        catch {
+            return BadRequest("invalido");
+        }
+
+        if(user is null)
+            return BadRequest("nulo");
+
+        UserInfoDTO result = new UserInfoDTO()
+        {
+            UserName = user.Username,
+            Email = user.Email,
+            ProfilePic = 0
+        };
+
+        return Ok(result);
+    }
 }

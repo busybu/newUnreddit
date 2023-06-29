@@ -1,4 +1,4 @@
-<p>
+
   <mat-toolbar>
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
       <mat-icon>
@@ -9,8 +9,10 @@
 
     <a href="/" style="list-style: none;">Ursitter</a>
     <span class="example-spacer"></span>
-    <a mat-flat-button color="accent" href="/login" style="background-color: #c6bef7;">Entrar</a>
+    <div class="buttons">
+      <a mat-flat-button color="accent" href="/login" style="background-color: #c6bef7;">Entrar</a>
     <a mat-flat-button color="warn" href="/register" style="margin-left: 0.5rem; background-color:#FF99C8 ;">Cadastrar</a>
-    <app-side-bar></app-side-bar>
+    <app-side-bar style="background-color: transparent;"></app-side-bar>
+    </div>
+    
   </mat-toolbar>
-</p>
