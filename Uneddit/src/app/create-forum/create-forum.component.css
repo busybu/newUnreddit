@@ -1,0 +1,25 @@
+.app
+{
+    width: 30vw;
+}
+.mat-dialog-content{
+    width: 100%;
+}
+.example-full-width{
+    width: 100%;
+    margin: 0 5px 0 0;
+}
+h2{
+    background-color: #D3F8E2;
+}
+button{
+    margin: 10px;
+}
+.two-titles{
+    display: flex;
+    justify-content: space-between;
+}
+.two-inputs
+{
+    display: flex;
+}

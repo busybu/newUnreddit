@@ -1,13 +1,39 @@
-<h1 mat-dialog-title>Criar Fórum</h1>
-<div mat-dialog-content>
+<div class="app">
+  <h2 mat-dialog-title>Criar Fórum</h2>
+  <div mat-dialog-content>
     <form class="example-form">
-        <h3 style="color: black;">Nome</h3>
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Ex. Pizza" value="Sushi">
-        </mat-form-field>
-      </form>
-</div>
-<div mat-dialog-actions>
-  <button mat-button mat-dialog-close>No</button>
-  <button mat-button mat-dialog-close cdkFocusInitial>Criar</button>
+      <h3 style="color: black;">Nome</h3>
+      <mat-form-field class="example-full-width">
+        <input matInput [formControl]="nameFormControl" [errorStateMatcher]="matcher"
+          placeholder="Dê um nome criativo!" [(ngModel)]="this.data.titulo">
+        <mat-error *ngIf="nameFormControl.hasError('required')">
+          Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <div class="two-titles">
+        <h3 style="color: black;">Descrição</h3>
+        <h3 style="color: black; padding-right: 1rem;">Quantidade</h3>
+
+      </div>
+      <div class="two-inputs">
+
+      
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Escreva sobre os assuntos do seu fórum!"
+        [(ngModel)]="this.data.descricao">
+        <mat-hint>Insira uma descrição.</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" style="width: 30%; padding-left: 5rem;">
+        <input matInput [(ngModel)]="this.data.quantidade" type="number">
+      </mat-form-field>
+      </div>
+      
+    </form>
+  </div>
+  <div mat-dialog-actions style="justify-content: space-between;">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button mat-dialog-close cdkFocusInitial style="background-color: #D0F4DE;"
+    >Criar</button>
+  </div>
 </div>

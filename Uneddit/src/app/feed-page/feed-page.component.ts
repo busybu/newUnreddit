@@ -3,7 +3,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { UserInfo } from '../DTO/user-info';
-import { UserService } from '../user-service/user.service';
+import { UserService } from '../Services/user-service/user.service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-feed-page',
