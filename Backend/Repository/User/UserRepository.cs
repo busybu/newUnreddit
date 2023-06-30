@@ -7,7 +7,7 @@ namespace Reddit.Repository;
 using Microsoft.EntityFrameworkCore;
 using Model;
 
-public class UserRepository : IRepository<Usuario>
+public class UserRepository : IUserRepository
 {
 
     private UnedditContext ctx;
@@ -39,7 +39,7 @@ public class UserRepository : IRepository<Usuario>
         ctx.Usuarios.Update(obj);
         await ctx.SaveChangesAsync();
     }
-     public async Task<Usuario> Find(int id)
+    public async Task<Usuario> Find(int id)
     {
         var user = await ctx.Usuarios.FindAsync(id);
         return user;

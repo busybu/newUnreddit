@@ -26,8 +26,9 @@ CREATE TABLE Forum (
   id INT IDENTITY PRIMARY KEY,
   titulo VARCHAR(255) NOT NULL,
   descricao VARCHAR(255) NOT NULL,
-  data_criado DATE,
-  criador INT, 
+  data_criado DATE NOT NULL,
+  criador INT NOT NULL, 
+  quantidade INT NOT NULL,
   FOREIGN KEY (criador) REFERENCES Usuario(id)
 );
 go
