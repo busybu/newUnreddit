@@ -43,8 +43,8 @@ public class ForumController : ControllerBase
             Titulo = forum.Titulo,
             Descricao = forum.Descricao,
             DataCriado = forum.DataCriacao,
-            Quantidade = forum.Quantidade
-
+            Quantidade = forum.Quantidade,
+            Criador = user.Id
         }
     }
 }
