@@ -22,29 +22,36 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 
 })
 export class CreateForumComponent {
+  constructor(private forumService: ForumService, 
+    private router: Router) {
+
+  }
+  responseMessage = "";
   data: ForumData = 
   {
     titulo: '',
     descricao :'',
     dataCriacao: new Date(),
-    jwt: localStorage.getItem('session') ?? "",
+    jwt: sessionStorage.getItem('session') ?? "",
     quantidade: 0
   }
-
-  constructor(private forumService: ForumService, 
-    private router: Router) {
-
-  }
+  
   openDialog(): void {
   }
   nameFormControl = new FormControl('', [Validators.required, Validators.email]);
   matcher = new MyErrorStateMatcher();
 
-  // createForum()
-  // {
-  //   this.forumService.create(this.data)
-  //   .subscribe(res => {
-      
-  //   })
-  // }
+  createForum()
+  {
+    console.log(this.data.titulo);
+    console.log(this.data.descricao);
+    console.log(this.data.quantidade);
+    this.forumService.create(this.data)
+    .subscribe(res => {
+      this.responseMessage = res.message;
+      if(this.responseMessage == "Grupo criado")
+        this.router.navigate(['/'])
+    })
+    
+  }
 }

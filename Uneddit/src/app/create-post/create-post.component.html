@@ -1,14 +1,24 @@
-<div class="app">
-  <mat-card>
-    <mat-form-field class="example-full-width">
-      <mat-label>Leave a comment</mat-label>
-      <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
-      
-    </mat-form-field>
-  </mat-card>
-  <div class="button-area">
-    <mat-icon> insert_photo</mat-icon>
-    <button mat-raised-button color="warn" style="margin-left: 80%; margin-bottom: 2%; background-color: #FCF6BD;">Warn</button>
+<div class="post">
+  <mat-form-field class="example-full-width" style="border-bottom-right-radius: var(--mdc-shape-small, 4px);
+  border-bottom-left-radius: var(--mdc-shape-small, 4px);">
+    <mat-label>Escreva seus pensamentos!</mat-label>
+    <textarea matInput placeholder="Insira uma foto no botão ao lado."></textarea>
+  </mat-form-field>
 
+  <div class="buttons">
+    <button mat-mini-fab color="primary" style="background-color: #FCF6BD;color: rgb(58, 58, 58);"
+      aria-label="Example icon button with a menu icon">
+      <mat-icon>insert_photo</mat-icon>
+    </button>
+
+      <div class="select"><select>
+          <option value="" selected disabled>Escolher Fórum</option>
+          <option value="">a</option>
+          <option value="">a</option>
+        </select></div>
+        
+
+    <button mat-raised-button color="primary" style="background-color: #D0F4DE; color: rgb(58, 58, 58);">Enviar</button>
   </div>
+
 </div>

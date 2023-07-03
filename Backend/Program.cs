@@ -25,8 +25,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<UnedditContext>();
-builder.Services.AddTransient<IRepository<Usuario>, UserRepository>();
+builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IRepository<Forum>, ForumRepository>();
+builder.Services.AddTransient<IRepository<Post>, PostRepository>();
 builder.Services.AddTransient<ISecurityService, SecurityService>();
 
 builder.Services.AddTransient<IPasswordProvider>(p => {

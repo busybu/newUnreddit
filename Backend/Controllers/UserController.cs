@@ -59,7 +59,7 @@ public class UserController : ControllerBase
     public async Task<ActionResult<Jwt>> Login(
         [FromBody] UserLoginDTO userLogin,
         [FromServices] ISecurityService security,
-        [FromServices] IRepository<Usuario> repo,
+        [FromServices] IUserRepository repo,
         [FromServices] IJwtService jwtService
      )
     {
@@ -118,7 +118,7 @@ public class UserController : ControllerBase
     [HttpPost("get")]
     public async Task<ActionResult<UserInfoDTO>> GetSingle(
         [FromBody] JwtValue jwt,
-        [FromServices] IRepository<Usuario> userRepository,
+        [FromServices] IUserRepository userRepository,
         [FromServices] IJwtService jwtService
     ) 
     {

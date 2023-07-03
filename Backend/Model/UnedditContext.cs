@@ -41,7 +41,7 @@ public partial class UnedditContext : DbContext
     {
         modelBuilder.Entity<Cargo>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Cargo__3213E83FA5A6419D");
+            entity.HasKey(e => e.Id).HasName("PK__Cargo__3213E83F84D7E8DE");
 
             entity.ToTable("Cargo");
 
@@ -61,7 +61,7 @@ public partial class UnedditContext : DbContext
 
         modelBuilder.Entity<CargoPermissao>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__CargoPer__3213E83FC2306800");
+            entity.HasKey(e => e.Id).HasName("PK__CargoPer__3213E83FE18FBE74");
 
             entity.ToTable("CargoPermissao");
 
@@ -82,7 +82,7 @@ public partial class UnedditContext : DbContext
 
         modelBuilder.Entity<Comentario>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Comentar__3213E83FAA54D52D");
+            entity.HasKey(e => e.Id).HasName("PK__Comentar__3213E83F1D6A86BA");
 
             entity.ToTable("Comentario");
 
@@ -107,7 +107,7 @@ public partial class UnedditContext : DbContext
 
         modelBuilder.Entity<Forum>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Forum__3213E83F60891FAB");
+            entity.HasKey(e => e.Id).HasName("PK__Forum__3213E83F107F282F");
 
             entity.ToTable("Forum");
 
@@ -120,6 +120,7 @@ public partial class UnedditContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("descricao");
+            entity.Property(e => e.Quantidade).HasColumnName("quantidade");
             entity.Property(e => e.Titulo)
                 .HasMaxLength(255)
                 .IsUnicode(false)
@@ -127,12 +128,13 @@ public partial class UnedditContext : DbContext
 
             entity.HasOne(d => d.CriadorNavigation).WithMany(p => p.Forums)
                 .HasForeignKey(d => d.Criador)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Forum__criador__398D8EEE");
         });
 
         modelBuilder.Entity<ForumUsuario>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__ForumUsu__3213E83F1434AC2C");
+            entity.HasKey(e => e.Id).HasName("PK__ForumUsu__3213E83FA67ABA04");
 
             entity.ToTable("ForumUsuario");
 
@@ -153,7 +155,7 @@ public partial class UnedditContext : DbContext
 
         modelBuilder.Entity<Permissao>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Permissa__3213E83FD78A49FB");
+            entity.HasKey(e => e.Id).HasName("PK__Permissa__3213E83FCB2B440B");
 
             entity.ToTable("Permissao");
 
@@ -168,7 +170,7 @@ public partial class UnedditContext : DbContext
 
         modelBuilder.Entity<Post>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Post__3213E83FD0AB2C6F");
+            entity.HasKey(e => e.Id).HasName("PK__Post__3213E83F25CC4780");
 
             entity.ToTable("Post");
 
@@ -200,7 +202,7 @@ public partial class UnedditContext : DbContext
 
         modelBuilder.Entity<UpVote>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__UpVote__3213E83FC8FF4F84");
+            entity.HasKey(e => e.Id).HasName("PK__UpVote__3213E83F25D8E570");
 
             entity.ToTable("UpVote");
 
@@ -221,7 +223,7 @@ public partial class UnedditContext : DbContext
 
         modelBuilder.Entity<Usuario>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Usuario__3213E83F5E369490");
+            entity.HasKey(e => e.Id).HasName("PK__Usuario__3213E83FDDB48282");
 
             entity.ToTable("Usuario");
 

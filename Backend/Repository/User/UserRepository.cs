@@ -1,20 +1,25 @@
-using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace Reddit.Repository;
 
 using Microsoft.EntityFrameworkCore;
 using Model;
+using Reddit.DTO;
+using Security.Jwt;
 
 public class UserRepository : IUserRepository
 {
 
     private UnedditContext ctx;
+    private IJwtService jwtService;
+    private UserRepository userRepository;
+    public UserRepository(UnedditContext ctx, IJwtService jwtService)
 
-    public UserRepository(UnedditContext ctx) 
-        => this.ctx = ctx;
+    {
+        this.ctx = ctx;
+        this.jwtService = jwtService;
 
+    }
     public async Task Add(Usuario obj)
     {
         ctx.Usuarios.Add(obj);
@@ -42,6 +47,21 @@ public class UserRepository : IUserRepository
     public async Task<Usuario> Find(int id)
     {
         var user = await ctx.Usuarios.FindAsync(id);
+        return user;
+    }
+
+
+    public async Task<Usuario> ValidateJwt(JwtValue jwt)
+    {
+        Usuario user;
+
+        var token = jwtService.Validate<Jwt>(jwt.Value);
+
+        if (!token.Authenticated)
+            throw new InvalidDataException();
+
+        user = await this.Find(token.UserID);
+
         return user;
     }
 }

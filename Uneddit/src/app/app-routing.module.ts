@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: '', title: "Feed", component: FeedPageComponent },
   { path: 'login', title: "Login", component: LoginPageComponent},
   { path: 'register', title: "Register", component: RegisterPageComponent},
-  { path: 'forumPage', title: "ForumPage", component: ForumPageComponent},
+  { path: 'forum', title: "ForumPage", component: ForumPageComponent},
   { path: 'home', title: "Home", component: HomePageComponent}
 ];
 

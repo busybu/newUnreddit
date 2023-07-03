@@ -46,6 +46,7 @@ CREATE TABLE Post (
   id INT PRIMARY KEY,
   titulo VARCHAR(255),
   conteudo VARCHAR(255),
+  data_criado DATE NOT NULL,
   anexo VARBINARY,
   autor INT,
   forum INT,
