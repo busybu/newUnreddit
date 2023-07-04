@@ -33,7 +33,10 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { CreateForumComponent } from './create-forum/create-forum.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { AddUserComponent } from './add-user/add-user.component';
-
+import { ListForumsComponent } from './list-forums/list-forums.component';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
     declarations: [
@@ -51,12 +54,16 @@ import { AddUserComponent } from './add-user/add-user.component';
         StaticBarComponent,
         HomePageComponent,
         CreateForumComponent,
-        AddUserComponent
+        AddUserComponent,
+        ListForumsComponent
     ],
     providers: [
     ],
     bootstrap: [AppComponent],
     imports: [
+        MatExpansionModule,
+        MatListModule,
+        MatDividerModule,
         MatDialogModule,
         MatProgressBarModule,
         MatMenuModule,

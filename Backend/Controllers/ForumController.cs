@@ -72,8 +72,80 @@ public class ForumController : ControllerBase
         var forumExist = await forumService.Find(forumUser.ForumId);
         if (forumExist is null)
             return Ok("Fórum não é válido");
-        
+
         await forumService.AddUser(forumExist, user);
         return Ok("Usuario adicionado no fórum");
+    }
+
+    [HttpPost("listForums")]
+    public async Task<ActionResult<List<ForumDTO>>> ListForum(
+        [FromBody] ForumUserDTO forumUser,
+        [FromServices] IUserRepository userService,
+        [FromServices] IForumRepository forumService
+    )
+    {
+        Usuario user;
+        JwtValue jwt = new JwtValue() { Value = forumUser.Jwt };
+        try
+        {
+            user = await userService.ValidateJwt(jwt);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        if (user is null)
+            return NotFound("Usuário não é válido");
+
+        var foruns = await forumService.FindAll();
+        List<ForumDTO> result = new List<ForumDTO>();
+        
+        foreach (var forum in foruns)
+        {
+            ForumDTO item = new ForumDTO()
+            {
+                Titulo = forum.Titulo,
+                IsMember = await forumService.IsMember(user, forum),
+                Quantidade = forum.Quantidade,
+            };
+            result.Add(item);
+        }
+        return Ok(result.OrderBy(x=> x.Quantidade));
+    }
+
+
+    [HttpPost("listUserForums")]
+    public async Task<ActionResult<List<ForumDTO>>> GetUserForum(
+        [FromBody] JwtValue jwt,
+        [FromServices] IUserRepository userService,
+        [FromServices] IForumRepository forumService
+    )
+    {
+        Console.WriteLine("to aq");
+        Usuario user;
+        try
+        {
+            user = await userService.ValidateJwt(jwt);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        if (user is null)
+            return NotFound("Usuário não é válido");
+
+        var foruns = await forumService.GetUserGroups(user);
+        List<ForumDTO> result = new List<ForumDTO>();
+        
+        foreach (var forum in foruns)
+        {
+            ForumDTO item = new ForumDTO()
+            {
+                Titulo = forum.Titulo,
+                Id = forum.Id
+            };
+            result.Add(item);
+        }
+        return Ok(result);
     }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ForumUserData } from '../DTO/Forum/forum-user-data';
 
 @Component({
@@ -9,10 +9,9 @@ import { ForumUserData } from '../DTO/Forum/forum-user-data';
 export class AddUserComponent {
   errorMessage='';
   
-  data: ForumUserData =
-  {
-    
-  }
+  @Input() GroupId : number = 0
+
+  
   enterForum(){
     
   }

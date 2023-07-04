@@ -1,7 +1,6 @@
 
 export interface ForumUserData
 {
-    userID: string,
-    forumID: string,
+    forumId: number,
     jwt: string
 }

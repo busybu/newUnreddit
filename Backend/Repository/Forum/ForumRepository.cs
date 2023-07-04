@@ -55,4 +55,24 @@ public class ForumRepository : IForumRepository
         var forum = await ctx.Forums.FindAsync(id);
         return forum;
     }
+    public async Task<List<Forum>> FindAll()
+    {
+        var foruns = ctx.Forums.Where(u => true);
+        return await foruns.ToListAsync();
+    }
+
+    public  async Task<bool> IsMember(Usuario user, Forum forum)
+    {
+        bool isMember = await ctx.ForumUsuarios.AnyAsync(fu => fu.Usuarios == user.Id && fu.Forum == forum.Id);
+        return isMember;
+    }
+    public async Task<List<Forum?>> GetUserGroups(Usuario user)
+    {
+        var query = ctx
+            .ForumUsuarios
+                .Where(fu => fu.Usuarios == user.Id)
+                .Select(fu => fu.ForumNavigation);
+
+        return await query.ToListAsync();
+    }
 }

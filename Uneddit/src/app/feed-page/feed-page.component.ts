@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import { UserInfo } from '../DTO/User/user-info';
+import { UserInfo } from '../DTO/user-info';
 import { UserService } from '../Services/user-service/user.service';
 import { Router } from '@angular/router';
 @Component({

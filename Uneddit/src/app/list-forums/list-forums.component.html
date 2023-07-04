@@ -1,0 +1,19 @@
+<mat-accordion (click)="list()">
+    <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+            <mat-icon>keyboard_arrow_down</mat-icon>
+            <mat-panel-description>
+                Clique para ver todos os fóruns
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-list>
+            <mat-list-item *ngFor="let element of forums; last as last">
+                
+                {{element.titulo}}
+                <br>
+                <mat-divider [inset]="true" *ngIf="!last" style="margin: 0;"></mat-divider>
+            </mat-list-item>
+            
+        </mat-list>
+    </mat-expansion-panel>
+</mat-accordion>

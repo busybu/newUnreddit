@@ -29,6 +29,7 @@ export class CreateForumComponent {
   responseMessage = "";
   data: ForumData = 
   {
+    id: 0,
     titulo: '',
     descricao :'',
     dataCriacao: new Date(),

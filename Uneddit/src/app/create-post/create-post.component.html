@@ -1,24 +1,32 @@
 <div class="post">
-  <mat-form-field class="example-full-width" style="border-bottom-right-radius: var(--mdc-shape-small, 4px);
-  border-bottom-left-radius: var(--mdc-shape-small, 4px);">
-    <mat-label>Escreva seus pensamentos!</mat-label>
-    <textarea matInput placeholder="Insira uma foto no botão ao lado."></textarea>
-  </mat-form-field>
+  <div class="content">
+    <div class="buttons">
+      <mat-form-field>
+        <mat-label>Selecione o Fórum</mat-label>
+        <mat-select (click)="getForumSelected()">
+          <mat-option *ngFor="let element of forums; last as last" [value]="element.id" 
+          [(ngModel)]="this.data.forumID">
+            {{element.titulo}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <mat-form-field class="example-full-width" style="border-bottom-right-radius: var(--mdc-shape-small, 4px);
+    border-bottom-left-radius: var(--mdc-shape-small, 4px);">
+      <mat-label>Escreva seus pensamentos!</mat-label>
+      <textarea matInput placeholder="Insira uma foto no botão ao lado."></textarea>
+    </mat-form-field>
+    <div class="buttons">
+      <button mat-mini-fab color="primary" style="background-color: #FCF6BD;color: rgb(58, 58, 58);"
+        aria-label="Example icon button with a menu icon">
+        <mat-icon>insert_photo</mat-icon>
+      </button>
 
-  <div class="buttons">
-    <button mat-mini-fab color="primary" style="background-color: #FCF6BD;color: rgb(58, 58, 58);"
-      aria-label="Example icon button with a menu icon">
-      <mat-icon>insert_photo</mat-icon>
-    </button>
+      <button mat-raised-button color="primary" (click)= "post()"
+        style="background-color: #D0F4DE; color: rgb(58, 58, 58);">Enviar</button>
+    </div>
 
-      <div class="select"><select>
-          <option value="" selected disabled>Escolher Fórum</option>
-          <option value="">a</option>
-          <option value="">a</option>
-        </select></div>
-        
-
-    <button mat-raised-button color="primary" style="background-color: #D0F4DE; color: rgb(58, 58, 58);">Enviar</button>
   </div>
+
 
 </div>

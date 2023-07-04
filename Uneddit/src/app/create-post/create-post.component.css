@@ -1,70 +1,79 @@
-.app{
+.post {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     width: 100%;
-    background-color: #212121;;
+    border-radius: 10%;
+    background-color: #212121;
+    border-radius: 18px 18px 18px 18px;
+    border: 0px solid #000000;
 }
-.mdc-text-field
+.content{
+    margin: 15px;
+}
+/* .buttons .mat-mdc-form-field mat-label
 {
-    border-bottom-right-radius: var(--mdc-shape-small, 4px) !important;
-    border-bottom-left-radius: var(--mdc-shape-small, 4px) !important;
+    font-size: 10px;
+    height: auto;
 }
-.buttons{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.buttons .mat-mdc-form-field
+{
+    height: 50px;
+} */
 
+
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
-mat-card{
+
+mat-card {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
 }
-.mat-mdc-card{
+
+.mat-mdc-card {
     background-color: #212121;
 }
 
-.mat-mdc-text-field-wrapper mdc-text-field ng-tns-c1205077789-0 mdc-text-field--filled
-{
+.mat-mdc-text-field-wrapper mdc-text-field ng-tns-c1205077789-0 mdc-text-field--filled {
     background-color: aliceblue;
 }
-.example-full-width{
+
+.example-full-width {
     display: flex;
-    justify-content:flex-end;
+    justify-content: flex-end;
     align-items: center;
     width: 100%;
 
 }
 
-mat-icon{
+mat-icon {
     margin-left: 1rem;
 }
-button{
+
+button {
     padding-right: 1rem;
 }
-.button-area
-{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 100%;
-}
+
 .mdc-menu-surface .mat-mdc-select-panel {
-    width: 10vw !important; 
-    position:absolute;
+    width: 10vw !important;
+    position: absolute;
     outline: 0;
     margin: 0;
     padding: 8px 0;
     list-style-type: none;
 }
-.select{
+
+.select {
     position: relative;
     background-color: blue;
 }
+
 .select select {
     /* display: none; */
-     /*hide original SELECT element:*/
+    /*hide original SELECT element:*/
 }
