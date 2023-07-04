@@ -1,0 +1,9 @@
+<h1 mat-dialog-title style="background-color: #f7b2d3;">Entrar no Fórum</h1>
+<div mat-dialog-content>
+    <h3>Você tem certeza que gostaria de entrar nesse fórum?</h3>
+</div>
+<h4>{{errorMessage}}</h4>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Não</button>
+    <button mat-button mat-dialog-close (click)="enterForum()" cdkFocusInitial style="background-color: #f7b2d3;">Entrar</button>
+</div>

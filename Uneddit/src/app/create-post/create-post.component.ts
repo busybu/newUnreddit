@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { PostData } from '../DTO/post-data';
+import { PostData } from '../DTO/Forum/Post/post-data';
 interface Animal {
   name: string;
   sound: string;

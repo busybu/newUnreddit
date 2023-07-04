@@ -5,7 +5,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { ForumData } from '../DTO/forum-data';
+import { ForumData } from '../DTO/Forum/forum-data';
 import { ForumService } from '../Services/forum-service/forum.service';
 import { Router } from '@angular/router';
 

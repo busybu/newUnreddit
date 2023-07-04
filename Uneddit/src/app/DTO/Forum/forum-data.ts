@@ -1,4 +1,4 @@
-import { LoginDTO } from "./login-return"
+import { LoginDTO } from "../Jwt/login-return"
 
 export interface ForumData
 {

@@ -32,6 +32,7 @@ import { StaticBarComponent } from './static-bar/static-bar.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { CreateForumComponent } from './create-forum/create-forum.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { AddUserComponent } from './add-user/add-user.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import {MatDialogModule} from '@angular/material/dialog';
         ForumPageComponent,
         StaticBarComponent,
         HomePageComponent,
-        CreateForumComponent
+        CreateForumComponent,
+        AddUserComponent
     ],
     providers: [
     ],

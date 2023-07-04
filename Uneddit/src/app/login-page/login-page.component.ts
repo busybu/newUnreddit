@@ -1,7 +1,7 @@
 import { Component, Inject, LOCALE_ID } from '@angular/core';
 import { formatDate } from '@angular/common';
 import { FormControl, Validators } from '@angular/forms';
-import { LoginData } from '../DTO/login-data';
+import { LoginData } from '../DTO/User/login-data';
 import { UserService } from '../Services/user-service/user.service';
 import { Router } from '@angular/router';
 

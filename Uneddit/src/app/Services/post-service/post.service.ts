@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ErrorData } from 'src/app/DTO/error-data';
-import { PostData } from 'src/app/DTO/post-data';
+import { PostData } from 'src/app/DTO/Forum/Post/post-data';
 
 @Injectable({
   providedIn: 'root'
