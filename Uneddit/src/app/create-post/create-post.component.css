@@ -1,3 +1,6 @@
+.app{
+    width: 25vw;
+}
 .post {
     display: flex;
     flex-direction: column;
@@ -10,16 +13,9 @@
 .content{
     margin: 15px;
 }
-/* .buttons .mat-mdc-form-field mat-label
-{
-    font-size: 10px;
-    height: auto;
+h2{
+    background-color: #FF99C8;
 }
-.buttons .mat-mdc-form-field
-{
-    height: 50px;
-} */
-
 
 
 .buttons {
@@ -52,11 +48,11 @@ mat-card {
 }
 
 mat-icon {
-    margin-left: 1rem;
 }
-
-button {
-    padding-right: 1rem;
+button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .mdc-menu-surface .mat-mdc-select-panel {
@@ -68,10 +64,6 @@ button {
     list-style-type: none;
 }
 
-.select {
-    position: relative;
-    background-color: blue;
-}
 
 .select select {
     /* display: none; */

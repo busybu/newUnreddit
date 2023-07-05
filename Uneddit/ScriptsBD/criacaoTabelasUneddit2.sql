@@ -47,6 +47,7 @@ CREATE TABLE Post (
   titulo VARCHAR(255),
   conteudo VARCHAR(255),
   anexo VARBINARY,
+  data_criado DATE NOT NULL,
   autor INT,
   forum INT,
   FOREIGN KEY (autor) REFERENCES Usuario(id),

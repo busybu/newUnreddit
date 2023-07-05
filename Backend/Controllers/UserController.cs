@@ -21,7 +21,7 @@ public class UserController : ControllerBase
     [HttpPost("register")]
     public async Task<ActionResult> Register(
         [FromBody] UserRegisterDTO user,
-        [FromServices] IRepository<Usuario> repo,
+        [FromServices] IUserRepository repo,
         [FromServices] ISecurityService security
     )
     {

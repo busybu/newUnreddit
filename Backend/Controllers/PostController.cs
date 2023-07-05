@@ -23,7 +23,7 @@ public class PostController : ControllerBase
     public async Task<IActionResult> Create(
         [FromBody] PostDTO post,
         [FromServices] IRepository<Post> repo,
-        [FromServices] IRepository<Forum> forum,
+        [FromServices] IForumRepository forum,
         [FromServices] IUserRepository user
     )
     {

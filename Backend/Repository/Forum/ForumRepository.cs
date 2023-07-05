@@ -70,6 +70,7 @@ public class ForumRepository : IForumRepository
     {
         var query = ctx
             .ForumUsuarios
+                .Include(u => u.ForumNavigation)
                 .Where(fu => fu.Usuarios == user.Id)
                 .Select(fu => fu.ForumNavigation);
 

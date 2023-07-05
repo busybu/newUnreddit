@@ -22,7 +22,7 @@ public class ForumController : ControllerBase
     [HttpPost("create")]
     public async Task<IActionResult> Create(
         [FromBody] ForumDTO forum,
-        [FromServices] IRepository<Forum> repo,
+        [FromServices] IForumRepository repo,
         [FromServices] IUserRepository userService
     )
     {
@@ -46,6 +46,7 @@ public class ForumController : ControllerBase
             Criador = user.Id,
         };
         await repo.Add(newForum);
+        await repo.AddUser(newForum, user);
         return Ok(new ErrorDTO("Grupo criado"));
     }
 

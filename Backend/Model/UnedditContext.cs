@@ -41,13 +41,11 @@ public partial class UnedditContext : DbContext
     {
         modelBuilder.Entity<Cargo>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Cargo__3213E83F84D7E8DE");
+            entity.HasKey(e => e.Id).HasName("PK__Cargo__3213E83F1186C84D");
 
             entity.ToTable("Cargo");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Forum).HasColumnName("forum");
             entity.Property(e => e.Nome)
                 .HasMaxLength(255)
@@ -61,13 +59,11 @@ public partial class UnedditContext : DbContext
 
         modelBuilder.Entity<CargoPermissao>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__CargoPer__3213E83FE18FBE74");
+            entity.HasKey(e => e.Id).HasName("PK__CargoPer__3213E83F0A80174C");
 
             entity.ToTable("CargoPermissao");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Cargo).HasColumnName("cargo");
             entity.Property(e => e.Permissao).HasColumnName("permissao");
 
@@ -82,13 +78,11 @@ public partial class UnedditContext : DbContext
 
         modelBuilder.Entity<Comentario>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Comentar__3213E83F1D6A86BA");
+            entity.HasKey(e => e.Id).HasName("PK__Comentar__3213E83F4B556CB0");
 
             entity.ToTable("Comentario");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Conteudo)
                 .HasMaxLength(255)
                 .IsUnicode(false)
@@ -107,7 +101,7 @@ public partial class UnedditContext : DbContext
 
         modelBuilder.Entity<Forum>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Forum__3213E83F107F282F");
+            entity.HasKey(e => e.Id).HasName("PK__Forum__3213E83FA6A37A70");
 
             entity.ToTable("Forum");
 
@@ -134,13 +128,11 @@ public partial class UnedditContext : DbContext
 
         modelBuilder.Entity<ForumUsuario>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__ForumUsu__3213E83FA67ABA04");
+            entity.HasKey(e => e.Id).HasName("PK__ForumUsu__3213E83F395EEA63");
 
             entity.ToTable("ForumUsuario");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Forum).HasColumnName("forum");
             entity.Property(e => e.Usuarios).HasColumnName("usuarios");
 
@@ -155,13 +147,11 @@ public partial class UnedditContext : DbContext
 
         modelBuilder.Entity<Permissao>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Permissa__3213E83FCB2B440B");
+            entity.HasKey(e => e.Id).HasName("PK__Permissa__3213E83F2095EFB7");
 
             entity.ToTable("Permissao");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Nome)
                 .HasMaxLength(255)
                 .IsUnicode(false)
@@ -170,13 +160,11 @@ public partial class UnedditContext : DbContext
 
         modelBuilder.Entity<Post>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Post__3213E83F25CC4780");
+            entity.HasKey(e => e.Id).HasName("PK__Post__3213E83FBDF832B6");
 
             entity.ToTable("Post");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Anexo)
                 .HasMaxLength(1)
                 .HasColumnName("anexo");
@@ -202,13 +190,11 @@ public partial class UnedditContext : DbContext
 
         modelBuilder.Entity<UpVote>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__UpVote__3213E83F25D8E570");
+            entity.HasKey(e => e.Id).HasName("PK__UpVote__3213E83F44CC15CD");
 
             entity.ToTable("UpVote");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Post).HasColumnName("post");
             entity.Property(e => e.Usuario).HasColumnName("usuario");
 
@@ -223,7 +209,7 @@ public partial class UnedditContext : DbContext
 
         modelBuilder.Entity<Usuario>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Usuario__3213E83FDDB48282");
+            entity.HasKey(e => e.Id).HasName("PK__Usuario__3213E83F1B2E76EA");
 
             entity.ToTable("Usuario");
 

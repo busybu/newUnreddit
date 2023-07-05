@@ -1,32 +1,40 @@
-<div class="post">
-  <div class="content">
-    <div class="buttons">
-      <mat-form-field>
+<div class="app">
+  <h2 mat-dialog-title>Criar Post</h2>
+  <div mat-dialog-content>
+    <div class="example-form">
+      <mat-form-field class="example-full-width">
         <mat-label>Selecione o Fórum</mat-label>
         <mat-select (click)="getForumSelected()">
-          <mat-option *ngFor="let element of forums; last as last" [value]="element.id" 
-          [(ngModel)]="this.data.forumID">
+          <mat-option *ngFor="let element of forums" [value]="element.id" (click)="selectForum(element.id)"
+            ngDefaultControl>
             {{element.titulo}}
           </mat-option>
         </mat-select>
       </mat-form-field>
-    </div>
-    <mat-form-field class="example-full-width" style="border-bottom-right-radius: var(--mdc-shape-small, 4px);
-    border-bottom-left-radius: var(--mdc-shape-small, 4px);">
-      <mat-label>Escreva seus pensamentos!</mat-label>
-      <textarea matInput placeholder="Insira uma foto no botão ao lado."></textarea>
-    </mat-form-field>
-    <div class="buttons">
-      <button mat-mini-fab color="primary" style="background-color: #FCF6BD;color: rgb(58, 58, 58);"
-        aria-label="Example icon button with a menu icon">
-        <mat-icon>insert_photo</mat-icon>
-      </button>
 
-      <button mat-raised-button color="primary" (click)= "post()"
-        style="background-color: #D0F4DE; color: rgb(58, 58, 58);">Enviar</button>
-    </div>
 
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Titulo</mat-label>
+        <input matInput [(ngModel)]="data.titulo">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" style="border-bottom-right-radius: var(--mdc-shape-small, 4px);
+      border-bottom-left-radius: var(--mdc-shape-small, 4px);">
+        <mat-label>Escreva seus pensamentos!</mat-label>
+        <textarea matInput [(ngModel)]="data.conteudo" placeholder="Insira uma foto no botão ao lado."></textarea>
+      </mat-form-field>
+    </div>
+    <button mat-mini-fab color="primary" style="background-color: #f4acb7;color: rgb(58, 58, 58);"
+      aria-label="Example icon button with a menu icon">
+      <mat-icon>insert_photo</mat-icon>
+    </button>
+    <h4 style="display: flex; align-items: center; margin: 0; justify-content: center; color: rgb(121, 141, 143);">
+      {{responseMessage}}</h4>
   </div>
+  <div mat-dialog-actions style="justify-content: space-between;">
 
-
+    <button mat-button mat-dialog-close>Voltar</button>
+    <button mat-button cdkFocusInitial style="background-color: #ffcad4;" (click)="post()">Criar</button>
+  </div>
 </div>
