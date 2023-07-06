@@ -5,6 +5,7 @@ import { ForumData } from 'src/app/DTO/Forum/forum-data';
 import { ForumUserData } from 'src/app/DTO/Forum/forum-user-data';
 import { GetForumData } from 'src/app/DTO/Forum/get-forum-data';
 import { Jwt } from 'src/app/DTO/Jwt/jwt-data';
+import { PostData } from 'src/app/DTO/Forum/Post/post-data';
 
 @Injectable({
   providedIn: 'root'
@@ -33,4 +34,5 @@ export class ForumService {
   {
     return this.http.post<ForumData>("http://localhost:5062/forum/getForum", data)
   }
+  
 }

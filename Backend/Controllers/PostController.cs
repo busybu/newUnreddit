@@ -81,20 +81,49 @@ public class PostController : ControllerBase
 
         var posts = await repo.FindAll();
         List<PostDTO> result = new List<PostDTO>();
-        
+
         foreach (var post in posts)
         {
             var autorPost = await userService.Find(post.Autor);
             var forumPost = await forum.Find(post.Forum);
-           
+
             PostDTO item = new PostDTO()
             {
                 Titulo = post.Titulo,
                 Conteudo = post.Conteudo,
                 NomeForum = forumPost.Titulo,
                 NomeAutor = autorPost.Username,
-                DataCriacao = post.DataCriado
-                
+                DataCriacao = post.DataCriado,
+                ForumID = post.Forum
+            };
+            result.Add(item);
+        }
+        return Ok(result.OrderBy(x => x.DataCriacao).ToList());
+
+    }
+
+    [HttpPost("getPostFromForum")]
+    public async Task<ActionResult<List<ForumDTO>>> GetPostFromForum(
+        [FromBody] ForumUserDTO forumUser,
+        [FromServices] IPostRepository postService,
+        [FromServices] IForumRepository forumService,
+        [FromServices] IUserRepository userService
+    )
+    {
+        var posts = await postService.GetPostsForum(forumUser.ForumId);
+        List<PostDTO> result = new List<PostDTO>();
+
+        foreach (var post in posts)
+        {
+            var autorPost = await userService.Find(post.Autor);
+
+            PostDTO item = new PostDTO()
+            {
+                Titulo = post.Titulo,
+                Conteudo = post.Conteudo,
+                NomeAutor = autorPost.Username,
+                DataCriacao = post.DataCriado,
+                ForumID = post.Forum
             };
             result.Add(item);
         }

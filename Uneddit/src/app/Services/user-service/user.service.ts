@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UserData } from '../../DTO/user-data';
+import { UserData } from '../../DTO/User/user-data';
 import { LoginData } from '../../DTO/User/login-data';
 import { ErrorData } from '../../DTO/error-data';
 import { LoginDTO } from '../../DTO/Jwt/login-return';
 import { Jwt } from '../../DTO/Jwt/jwt-data';
-import { UserInfo } from '../../DTO/user-info';
+import { UserInfo } from '../../DTO/User/user-info';
 
 @Injectable({
   providedIn: 'root'

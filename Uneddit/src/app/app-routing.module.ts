@@ -13,7 +13,6 @@ const routes: Routes = [
   { path: '', title: "Feed", component: FeedPageComponent },
   { path: 'login', title: "Login", component: LoginPageComponent},
   { path: 'register', title: "Register", component: RegisterPageComponent},
-  { path: 'forum', title: "ForumPage", component: ForumPageComponent},
   { path: 'home', title: "Home", component: HomePageComponent},
   { path: 'user', title: "User", component: UserPageComponent},
   { path: 'forum/:title', title: "Forum", component: ForumPageComponent},

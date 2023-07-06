@@ -28,14 +28,18 @@
 
             <div class="interative-post-data">
                 <div class="like-comment">
-                    <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+                    <button mat-icon-button color="warn" 
+                    aria-label="Example icon button with a heart icon"
+                    (click)="like(post.forumID)">
                         <mat-icon>favorite</mat-icon>
+                        <h4>19</h4>
                     </button>
                     <button mat-raised-button>Comment</button>
                 </div>
                 <div class="deslike">
                     <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
                         <mat-icon><img src="https://cdn-icons-png.flaticon.com/512/3314/3314923.png" alt=""> </mat-icon>
+                        <h4>19</h4>
                     </button>
                 </div>
             </div>

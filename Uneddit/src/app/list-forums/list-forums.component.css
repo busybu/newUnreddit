@@ -1,0 +1,6 @@
+mat-list-item:hover {
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: #d3f8e2db;
+    transition: 0.4s;
+}

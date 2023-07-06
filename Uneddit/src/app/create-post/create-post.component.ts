@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, NgModel, Validators } from '@angular/forms';
-import { PostData } from '../DTO/post-data';
+import { PostData } from '../DTO/Forum/Post/post-data';
 import { ForumService } from '../Services/forum-service/forum.service';
 import { PostService } from '../Services/post-service/post.service';
 import { Router } from '@angular/router';

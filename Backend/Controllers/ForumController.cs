@@ -179,8 +179,10 @@ public class ForumController : ControllerBase
             hasForum = await forumService.FindByName(data.ForumName);
         }
         catch (Exception ex)
-        {
+        {   
+            Console.WriteLine(data.ForumName);
             return NotFound(ex.Message);
+
         }
 
         ForumDTO forum = new ForumDTO()
@@ -193,4 +195,6 @@ public class ForumController : ControllerBase
         };
         return Ok(forum);
     }
+
+    
 }

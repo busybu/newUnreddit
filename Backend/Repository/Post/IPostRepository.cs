@@ -6,4 +6,5 @@ using Reddit.DTO;
 public interface IPostRepository : IRepository<Post>
 {
     Task<List<Post>> FindAll();
+    Task<List<Post>> GetPostsForum(int id);
 }

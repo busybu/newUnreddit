@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import { UserInfo } from '../DTO/user-info';
+import { UserInfo } from '../DTO/User/user-info';
 import { UserService } from '../Services/user-service/user.service';
 import { Router } from '@angular/router';
 @Component({
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./feed-page.component.css']
 })
 export class FeedPageComponent implements OnInit {
-
+  active= false;
   constructor(private userService: UserService, private router: Router) { }
 
   userInfo : UserInfo = {

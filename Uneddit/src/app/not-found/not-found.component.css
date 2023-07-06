@@ -1,0 +1,13 @@
+.app {
+    width: 100vw;
+    height: 92vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app img {
+    object-fit: cover;
+    width: 40%;
+
+}

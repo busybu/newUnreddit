@@ -44,4 +44,12 @@ public class PostRepository : IPostRepository
         var posts = ctx.Posts.Where(u => true);
         return await posts.ToListAsync();
     }
+
+     public async Task<List<Post>> GetPostsForum(int id)
+    {
+        var query = ctx
+            .Posts
+            .Where(u => u.Forum == id);
+        return await query.ToListAsync();
+    }
 }

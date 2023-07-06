@@ -57,7 +57,7 @@ public class ForumRepository : IForumRepository
     }
     public async Task<Forum> FindByName(string name)
     {
-        var forum = await ctx.Forums.FindAsync(name);
+        var forum = await ctx.Forums.Where(u => u.Titulo == name).FirstAsync();
         return forum;
     }
     public async Task<List<Forum>> FindAll()
@@ -81,4 +81,5 @@ public class ForumRepository : IForumRepository
 
         return await query.ToListAsync();
     }
+
 }
