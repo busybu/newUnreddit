@@ -5,5 +5,7 @@ export interface PostData
     anexo: string,
     jwt: string,
     forumID: number,
-    dataCriacao: Date
+    dataCriacao: Date,
+    nomeAutor: string,
+    nomeForum: string
 }

@@ -9,9 +9,9 @@ public partial class Cargo
 
     public string? Nome { get; set; }
 
-    public int? Forum { get; set; }
+    public int Forum { get; set; }
 
     public virtual ICollection<CargoPermissao> CargoPermissaos { get; set; } = new List<CargoPermissao>();
 
-    public virtual Forum? ForumNavigation { get; set; }
+    public virtual Forum ForumNavigation { get; set; } = null!;
 }

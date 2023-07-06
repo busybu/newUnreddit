@@ -13,15 +13,17 @@ public partial class Post
 
     public byte[]? Anexo { get; set; }
 
-    public int? Autor { get; set; }
+    public DateTime DataCriado { get; set; }
 
-    public int? Forum { get; set; }
+    public int Autor { get; set; }
 
-    public virtual Usuario? AutorNavigation { get; set; }
+    public int Forum { get; set; }
+
+    public virtual Usuario AutorNavigation { get; set; } = null!;
 
     public virtual ICollection<Comentario> Comentarios { get; set; } = new List<Comentario>();
 
-    public virtual Forum? ForumNavigation { get; set; }
+    public virtual Forum ForumNavigation { get; set; } = null!;
 
     public virtual ICollection<UpVote> UpVotes { get; set; } = new List<UpVote>();
 }

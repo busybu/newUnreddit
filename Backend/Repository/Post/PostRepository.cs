@@ -7,12 +7,12 @@ namespace Reddit.Repository;
 using Microsoft.EntityFrameworkCore;
 using Model;
 
-public class PostRepository : IRepository<Post>
+public class PostRepository : IPostRepository
 {
 
     private UnedditContext ctx;
 
-    public PostRepository(UnedditContext ctx) 
+    public PostRepository(UnedditContext ctx)
         => this.ctx = ctx;
 
     public async Task Add(Post obj)
@@ -39,5 +39,9 @@ public class PostRepository : IRepository<Post>
         ctx.Posts.Update(obj);
         await ctx.SaveChangesAsync();
     }
-
+    public async Task<List<Post>> FindAll()
+    {
+        var posts = ctx.Posts.Where(u => true);
+        return await posts.ToListAsync();
+    }
 }

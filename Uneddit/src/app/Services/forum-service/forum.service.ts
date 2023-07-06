@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ErrorData } from 'src/app/DTO/error-data';
 import { ForumData } from 'src/app/DTO/Forum/forum-data';
 import { ForumUserData } from 'src/app/DTO/Forum/forum-user-data';
+import { GetForumData } from 'src/app/DTO/Forum/get-forum-data';
 import { Jwt } from 'src/app/DTO/Jwt/jwt-data';
 
 @Injectable({
@@ -27,5 +28,9 @@ export class ForumService {
   listForumUser(jwt: Jwt)
   {
     return this.http.post<ForumData[]>("http://localhost:5062/forum/listUserForums", jwt)
+  } 
+  getForum(data: GetForumData)
+  {
+    return this.http.post<ForumData>("http://localhost:5062/forum/getForum", data)
   }
 }

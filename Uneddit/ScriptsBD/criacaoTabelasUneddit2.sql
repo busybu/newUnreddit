@@ -35,8 +35,8 @@ go
 -- Cria��o da tabela ForumUsuario
 CREATE TABLE ForumUsuario (
   id INT IDENTITY PRIMARY KEY,
-  forum INT,
-  usuarios INT,
+  forum INT NOT NULL,
+  usuarios INT NOT NULL,
   FOREIGN KEY (forum) REFERENCES Forum(id),
   FOREIGN KEY (usuarios) REFERENCES Usuario(id)
 );
@@ -45,11 +45,11 @@ go
 CREATE TABLE Post (
   id INT IDENTITY PRIMARY KEY,
   titulo VARCHAR(255),
-  conteudo VARCHAR(255),
+  conteudo VARCHAR(MAX),
   anexo VARBINARY,
   data_criado DATE NOT NULL,
-  autor INT,
-  forum INT,
+  autor INT NOT NULL,
+  forum INT NOT NULL,
   FOREIGN KEY (autor) REFERENCES Usuario(id),
   FOREIGN KEY (forum) REFERENCES Forum(id)
 );
@@ -57,9 +57,9 @@ go
 -- Cria��o da tabela Comentario
 CREATE TABLE Comentario (
   id INT IDENTITY PRIMARY KEY,
-  conteudo VARCHAR(255),
-  usuario INT,
-  post INT,
+  conteudo VARCHAR(255) NOT NULL,
+  usuario INT NOT NULL,
+  post INT NOT NULL,
   FOREIGN KEY (usuario) REFERENCES Usuario(id),
   FOREIGN KEY (post) REFERENCES Post(id)
 );
@@ -68,7 +68,7 @@ go
 CREATE TABLE Cargo (
   id INT IDENTITY PRIMARY KEY,
   nome VARCHAR(255),
-  forum INT,
+  forum INT NOT NULL,
   FOREIGN KEY (forum) REFERENCES Forum(id)
 );
 go
@@ -81,8 +81,8 @@ go
 -- Cria��o da tabela CargoPermissao
 CREATE TABLE CargoPermissao (
   id INT IDENTITY PRIMARY KEY,
-  cargo INT,
-  permissao INT,
+  cargo INT NOT NULL,
+  permissao INT NOT NULL,
   FOREIGN KEY (cargo) REFERENCES Cargo(id),
   FOREIGN KEY (permissao) REFERENCES Permissao(id)
 );
@@ -90,8 +90,8 @@ go
 -- Cria��o da tabela UpVote
 CREATE TABLE UpVote (
   id INT IDENTITY PRIMARY KEY,
-  post INT,
-  usuario INT,
+  post INT NOT NULL,
+  usuario INT NOT NULL,
   FOREIGN KEY (post) REFERENCES Post(id),
   FOREIGN KEY (usuario) REFERENCES Usuario(id)
 );

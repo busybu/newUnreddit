@@ -6,6 +6,8 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 import { ForumPageComponent } from './forum-page/forum-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { UserPageComponent } from './user-page/user-page.component';
+import { ListForumsComponent } from './list-forums/list-forums.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', title: "Feed", component: FeedPageComponent },
@@ -13,7 +15,9 @@ const routes: Routes = [
   { path: 'register', title: "Register", component: RegisterPageComponent},
   { path: 'forum', title: "ForumPage", component: ForumPageComponent},
   { path: 'home', title: "Home", component: HomePageComponent},
-  { path: 'user', title: "User", component: UserPageComponent}
+  { path: 'user', title: "User", component: UserPageComponent},
+  { path: 'forum/:title', title: "Forum", component: ForumPageComponent},
+  { path: '**', title: "Not Found", component: NotFoundComponent}
 ];
 
 @NgModule({

@@ -55,6 +55,11 @@ public class ForumRepository : IForumRepository
         var forum = await ctx.Forums.FindAsync(id);
         return forum;
     }
+    public async Task<Forum> FindByName(string name)
+    {
+        var forum = await ctx.Forums.FindAsync(name);
+        return forum;
+    }
     public async Task<List<Forum>> FindAll()
     {
         var foruns = ctx.Forums.Where(u => true);

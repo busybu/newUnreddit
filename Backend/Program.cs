@@ -27,7 +27,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<UnedditContext>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IForumRepository, ForumRepository>();
-builder.Services.AddTransient<IRepository<Post>, PostRepository>();
+builder.Services.AddTransient<IPostRepository, PostRepository>();
 builder.Services.AddTransient<ISecurityService, SecurityService>();
 
 builder.Services.AddTransient<IPasswordProvider>(p => {

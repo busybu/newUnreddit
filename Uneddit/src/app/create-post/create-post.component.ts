@@ -30,7 +30,9 @@ export class CreatePostComponent {
       dataCriacao: new Date(),
       jwt: sessionStorage.getItem('session') ?? "",
       anexo: '',
-      forumID: 0
+      forumID: 0,
+      nomeAutor:'',
+      nomeForum:''
     }
 
   jwt: Jwt =

@@ -31,12 +31,14 @@ public class ForumController : ControllerBase
 
         if (user is null)
             return Ok(new ErrorDTO("Não encontrado o usuário"));
+        if(forum.Titulo.Contains(" "))
+            return Ok(new ErrorDTO("Não é possível criar um título com espaço"));
 
         var groupExist = await repo.Filter(u => u.Titulo == forum.Titulo);
 
         if (groupExist.Any())
             return Ok(new ErrorDTO("O grupo já existe"));
-
+        
         Forum newForum = new Forum()
         {
             Titulo = forum.Titulo,
@@ -100,7 +102,7 @@ public class ForumController : ControllerBase
 
         var foruns = await forumService.FindAll();
         List<ForumDTO> result = new List<ForumDTO>();
-        
+
         foreach (var forum in foruns)
         {
             ForumDTO item = new ForumDTO()
@@ -111,12 +113,12 @@ public class ForumController : ControllerBase
             };
             result.Add(item);
         }
-        return Ok(result.OrderBy(x=> x.Quantidade));
+        return Ok(result.OrderBy(x => x.Quantidade));
     }
 
 
     [HttpPost("listUserForums")]
-    public async Task<ActionResult<List<ForumDTO>>> GetUserForum(
+    public async Task<ActionResult<List<ForumDTO>>> ListForums(
         [FromBody] JwtValue jwt,
         [FromServices] IUserRepository userService,
         [FromServices] IForumRepository forumService
@@ -137,7 +139,7 @@ public class ForumController : ControllerBase
 
         var foruns = await forumService.GetUserGroups(user);
         List<ForumDTO> result = new List<ForumDTO>();
-        
+
         foreach (var forum in foruns)
         {
             ForumDTO item = new ForumDTO()
@@ -148,5 +150,47 @@ public class ForumController : ControllerBase
             result.Add(item);
         }
         return Ok(result);
+    }
+
+    [HttpPost("getForum")]
+    public async Task<ActionResult<List<ForumDTO>>> GetUserForum(
+        [FromBody] GetForumDTO data,
+        [FromServices] IUserRepository userService,
+        [FromServices] IForumRepository forumService
+    )
+    {
+        Console.WriteLine("toaqu");
+        Usuario user;
+        Forum hasForum;
+        JwtValue jwt = new JwtValue() { Value = data.Jwt };
+        try
+        {
+            user = await userService.ValidateJwt(jwt);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        if (user is null)
+            return NotFound("Usuário não é válido");
+
+        try
+        {
+            hasForum = await forumService.FindByName(data.ForumName);
+        }
+        catch (Exception ex)
+        {
+            return NotFound(ex.Message);
+        }
+
+        ForumDTO forum = new ForumDTO()
+        {
+            Titulo = hasForum.Titulo,
+            Id = hasForum.Id,
+            Descricao = hasForum.Descricao,
+            Quantidade = hasForum.Quantidade,
+            DataCriacao = hasForum.DataCriado
+        };
+        return Ok(forum);
     }
 }

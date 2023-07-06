@@ -41,7 +41,7 @@ public partial class UnedditContext : DbContext
     {
         modelBuilder.Entity<Cargo>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Cargo__3213E83F1186C84D");
+            entity.HasKey(e => e.Id).HasName("PK__Cargo__3213E83FA830D986");
 
             entity.ToTable("Cargo");
 
@@ -54,12 +54,13 @@ public partial class UnedditContext : DbContext
 
             entity.HasOne(d => d.ForumNavigation).WithMany(p => p.Cargos)
                 .HasForeignKey(d => d.Forum)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Cargo__forum__47DBAE45");
         });
 
         modelBuilder.Entity<CargoPermissao>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__CargoPer__3213E83F0A80174C");
+            entity.HasKey(e => e.Id).HasName("PK__CargoPer__3213E83FD9224520");
 
             entity.ToTable("CargoPermissao");
 
@@ -69,16 +70,18 @@ public partial class UnedditContext : DbContext
 
             entity.HasOne(d => d.CargoNavigation).WithMany(p => p.CargoPermissaos)
                 .HasForeignKey(d => d.Cargo)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__CargoPerm__cargo__4CA06362");
 
             entity.HasOne(d => d.PermissaoNavigation).WithMany(p => p.CargoPermissaos)
                 .HasForeignKey(d => d.Permissao)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__CargoPerm__permi__4D94879B");
         });
 
         modelBuilder.Entity<Comentario>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Comentar__3213E83F4B556CB0");
+            entity.HasKey(e => e.Id).HasName("PK__Comentar__3213E83FF0517BF5");
 
             entity.ToTable("Comentario");
 
@@ -92,16 +95,18 @@ public partial class UnedditContext : DbContext
 
             entity.HasOne(d => d.PostNavigation).WithMany(p => p.Comentarios)
                 .HasForeignKey(d => d.Post)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Comentario__post__44FF419A");
 
             entity.HasOne(d => d.UsuarioNavigation).WithMany(p => p.Comentarios)
                 .HasForeignKey(d => d.Usuario)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Comentari__usuar__440B1D61");
         });
 
         modelBuilder.Entity<Forum>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Forum__3213E83FA6A37A70");
+            entity.HasKey(e => e.Id).HasName("PK__Forum__3213E83F0BFC7AF5");
 
             entity.ToTable("Forum");
 
@@ -128,7 +133,7 @@ public partial class UnedditContext : DbContext
 
         modelBuilder.Entity<ForumUsuario>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__ForumUsu__3213E83F395EEA63");
+            entity.HasKey(e => e.Id).HasName("PK__ForumUsu__3213E83F880C3979");
 
             entity.ToTable("ForumUsuario");
 
@@ -138,16 +143,18 @@ public partial class UnedditContext : DbContext
 
             entity.HasOne(d => d.ForumNavigation).WithMany(p => p.ForumUsuarios)
                 .HasForeignKey(d => d.Forum)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__ForumUsua__forum__3C69FB99");
 
             entity.HasOne(d => d.UsuariosNavigation).WithMany(p => p.ForumUsuarios)
                 .HasForeignKey(d => d.Usuarios)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__ForumUsua__usuar__3D5E1FD2");
         });
 
         modelBuilder.Entity<Permissao>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Permissa__3213E83F2095EFB7");
+            entity.HasKey(e => e.Id).HasName("PK__Permissa__3213E83F1B5208FF");
 
             entity.ToTable("Permissao");
 
@@ -160,7 +167,7 @@ public partial class UnedditContext : DbContext
 
         modelBuilder.Entity<Post>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Post__3213E83FBDF832B6");
+            entity.HasKey(e => e.Id).HasName("PK__Post__3213E83F3B850401");
 
             entity.ToTable("Post");
 
@@ -173,6 +180,9 @@ public partial class UnedditContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("conteudo");
+            entity.Property(e => e.DataCriado)
+                .HasColumnType("date")
+                .HasColumnName("data_criado");
             entity.Property(e => e.Forum).HasColumnName("forum");
             entity.Property(e => e.Titulo)
                 .HasMaxLength(255)
@@ -181,16 +191,18 @@ public partial class UnedditContext : DbContext
 
             entity.HasOne(d => d.AutorNavigation).WithMany(p => p.Posts)
                 .HasForeignKey(d => d.Autor)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Post__autor__403A8C7D");
 
             entity.HasOne(d => d.ForumNavigation).WithMany(p => p.Posts)
                 .HasForeignKey(d => d.Forum)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Post__forum__412EB0B6");
         });
 
         modelBuilder.Entity<UpVote>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__UpVote__3213E83F44CC15CD");
+            entity.HasKey(e => e.Id).HasName("PK__UpVote__3213E83FFFE6F002");
 
             entity.ToTable("UpVote");
 
@@ -200,16 +212,18 @@ public partial class UnedditContext : DbContext
 
             entity.HasOne(d => d.PostNavigation).WithMany(p => p.UpVotes)
                 .HasForeignKey(d => d.Post)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__UpVote__post__5070F446");
 
             entity.HasOne(d => d.UsuarioNavigation).WithMany(p => p.UpVotes)
                 .HasForeignKey(d => d.Usuario)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__UpVote__usuario__5165187F");
         });
 
         modelBuilder.Entity<Usuario>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Usuario__3213E83F1B2E76EA");
+            entity.HasKey(e => e.Id).HasName("PK__Usuario__3213E83F47FB9D4A");
 
             entity.ToTable("Usuario");
 

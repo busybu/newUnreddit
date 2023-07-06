@@ -7,8 +7,7 @@
             </mat-panel-description>
         </mat-expansion-panel-header>
         <mat-list>
-            <mat-list-item *ngFor="let element of forums; last as last">
-                
+            <mat-list-item *ngFor="let element of forums; last as last" (click) = "teste(element.titulo)">
                 {{element.titulo}}
                 <br>
                 <mat-divider [inset]="true" *ngIf="!last" style="margin: 0;"></mat-divider>

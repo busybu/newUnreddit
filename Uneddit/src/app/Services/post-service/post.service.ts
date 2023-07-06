@@ -17,6 +17,6 @@ export class PostService {
   }
   getPosts(jwt: Jwt)
   {
-    return this.http.post<PostData[]>("http://localhost:5062/post/create", jwt)
+    return this.http.post<PostData[]>("http://localhost:5062/post/listPost", jwt)
   }
 }

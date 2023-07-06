@@ -22,37 +22,83 @@ public class PostController : ControllerBase
 
     public async Task<IActionResult> Create(
         [FromBody] PostDTO post,
-        [FromServices] IRepository<Post> repo,
+        [FromServices] IPostRepository repo,
         [FromServices] IForumRepository forum,
         [FromServices] IUserRepository user
     )
     {
         Usuario isUser;
-        try{
-            isUser = await user.ValidateJwt(new JwtValue{Value = post.Jwt});
+        try
+        {
+            isUser = await user.ValidateJwt(new JwtValue { Value = post.Jwt });
         }
-        catch(Exception ex){
+        catch (Exception ex)
+        {
             return Ok(ex.Message);
         }
-        if(isUser is null)
-           return Ok("Usuario não existe");
-        
+        if (isUser is null)
+            return Ok("Usuario não existe");
+
         var forumExist = await forum.Filter(u => u.Id == post.ForumID);
 
-        if(forumExist.Count() == 0)
+        if (forumExist.Count() == 0)
             return Ok(new ErrorDTO("Esse fórum não existe"));
 
         var newForum = forumExist.First(u => u.Id == post.ForumID);
-        
+
         Post newPost = new Post()
         {
             Titulo = post.Titulo,
             Conteudo = post.Conteudo,
             Anexo = null,
+            DataCriado = post.DataCriacao,
             Autor = isUser.Id,
             Forum = newForum.Id,
         };
         await repo.Add(newPost);
-        return Ok(new ErrorDTO("Post criado")); 
+        return Ok(new ErrorDTO("Post criado"));
+    }
+
+    [HttpPost("listPost")]
+    public async Task<ActionResult<List<PostDTO>>> ListPost(
+        [FromBody] JwtValue jwt,
+        [FromServices] IPostRepository repo,
+        [FromServices] IForumRepository forum,
+        [FromServices] IUserRepository userService
+    )
+    {
+        Usuario user;
+        try
+        {
+            user = await userService.ValidateJwt(jwt);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        if (user is null)
+            return NotFound("Usuário não é válido");
+
+        var posts = await repo.FindAll();
+        List<PostDTO> result = new List<PostDTO>();
+        
+        foreach (var post in posts)
+        {
+            var autorPost = await userService.Find(post.Autor);
+            var forumPost = await forum.Find(post.Forum);
+           
+            PostDTO item = new PostDTO()
+            {
+                Titulo = post.Titulo,
+                Conteudo = post.Conteudo,
+                NomeForum = forumPost.Titulo,
+                NomeAutor = autorPost.Username,
+                DataCriacao = post.DataCriado
+                
+            };
+            result.Add(item);
+        }
+        return Ok(result.OrderBy(x => x.DataCriacao).ToList());
+
     }
 }

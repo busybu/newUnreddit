@@ -38,6 +38,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { UserPageComponent } from './user-page/user-page.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
     declarations: [
@@ -57,7 +58,8 @@ import { UserPageComponent } from './user-page/user-page.component';
         CreateForumComponent,
         AddUserComponent,
         ListForumsComponent,
-        UserPageComponent
+        UserPageComponent,
+        NotFoundComponent
     ],
     providers: [
     ],
