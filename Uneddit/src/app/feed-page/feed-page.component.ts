@@ -17,7 +17,8 @@ export class FeedPageComponent implements OnInit {
   userInfo : UserInfo = {
     username: '',
     email: '',
-    profilePic: 0
+    profilePic: 0,
+    id: 0
   }
 
   ngOnInit(): void {

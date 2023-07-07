@@ -1,5 +1,8 @@
 export interface LikeData
 {
-    jwtUser: string,
-    idForum: number
+    jwt: string,
+    idPost: number,
+    hasLike: boolean,
+    quantity: number,
+    idUser : number
 }

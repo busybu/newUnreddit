@@ -48,6 +48,7 @@ public class PostController : ControllerBase
 
         Post newPost = new Post()
         {
+            Id = post.Id,
             Titulo = post.Titulo,
             Conteudo = post.Conteudo,
             Anexo = null,
@@ -86,19 +87,23 @@ public class PostController : ControllerBase
         {
             var autorPost = await userService.Find(post.Autor);
             var forumPost = await forum.Find(post.Forum);
+            int likes = await repo.GetLikes(post);
 
             PostDTO item = new PostDTO()
             {
+                Id = post.Id,
                 Titulo = post.Titulo,
                 Conteudo = post.Conteudo,
                 NomeForum = forumPost.Titulo,
+                IdAutor = autorPost.Id,
                 NomeAutor = autorPost.Username,
                 DataCriacao = post.DataCriado,
-                ForumID = post.Forum
+                ForumID = post.Forum,
+                Like = likes
             };
             result.Add(item);
         }
-        return Ok(result.OrderBy(x => x.DataCriacao).ToList());
+        return Ok(result.OrderByDescending(x => x.DataCriacao).ToList());
 
     }
 
@@ -116,18 +121,84 @@ public class PostController : ControllerBase
         foreach (var post in posts)
         {
             var autorPost = await userService.Find(post.Autor);
-
+            int likes = await postService.GetLikes(post);
+            Console.WriteLine(likes);
             PostDTO item = new PostDTO()
             {
+                Id = post.Id,
                 Titulo = post.Titulo,
                 Conteudo = post.Conteudo,
                 NomeAutor = autorPost.Username,
+                IdAutor = autorPost.Id,
                 DataCriacao = post.DataCriado,
-                ForumID = post.Forum
+                ForumID = post.Forum,
+                Like = likes
             };
             result.Add(item);
         }
-        return Ok(result.OrderBy(x => x.DataCriacao).ToList());
+        return Ok(result.OrderByDescending(x => x.DataCriacao).ToList());
 
     }
+    [HttpPost("likePost")]
+    public async Task<ActionResult<List<ForumDTO>>> Like(
+        [FromBody] PostLikeInteractionDTO interaction,
+        [FromServices] IPostRepository postService,
+        [FromServices] IUserRepository userService
+    )
+    {
+        Usuario user;
+        try
+        {
+            user = await userService.ValidateJwt(new JwtValue { Value = interaction.Jwt });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        if (user is null)
+            return NotFound("Usuário não é válido");
+
+        Post post;
+        try
+        {
+            post = await postService.Find(interaction.IdPost);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("êta que nao tem esse post");
+            return BadRequest(ex.Message);
+        }
+        bool hasLiked = await postService.isLiked(post, user);
+
+        if (hasLiked)
+        {
+            Console.WriteLine("Descurtiu");
+            await postService.Deslike(post, user);
+            hasLiked = false;
+            Console.WriteLine(hasLiked);
+        }
+        else
+        {
+            Console.WriteLine("Curtiu");
+            await postService.Like(post, user);
+            hasLiked = true;
+            Console.WriteLine(hasLiked);
+        }
+
+
+        int likes = await postService.GetLikes(post);
+
+        PostLikeInteractionDTO result = new PostLikeInteractionDTO()
+        {
+            IdPost = post.Id,
+            Jwt = interaction.Jwt,
+            HasLike = hasLiked,
+            Quantity = likes,
+            IdUser = user.Id
+        };
+
+        return Ok(result);
+    }
+
+
 }

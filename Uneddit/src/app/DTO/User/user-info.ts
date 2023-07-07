@@ -2,5 +2,6 @@ export interface UserInfo
 {
     username: string,
     email: string,
-    profilePic: number
+    profilePic: number,
+    id:number
 }

@@ -146,7 +146,8 @@ public class UserController : ControllerBase
         {
             UserName = user.Username,
             Email = user.Email,
-            ProfilePic = 0
+            ProfilePic = 0,
+            Id = user.Id
         };
 
         return Ok(result);

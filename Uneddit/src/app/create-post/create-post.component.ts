@@ -32,7 +32,10 @@ export class CreatePostComponent {
       anexo: '',
       forumID: 0,
       nomeAutor:'',
-      nomeForum:''
+      idAutor:0,
+      nomeForum:'',
+      id: 0,
+      like: 0
     }
 
   jwt: Jwt =

@@ -4,6 +4,7 @@ import { Jwt } from 'src/app/DTO/Jwt/jwt-data';
 import { ErrorData } from 'src/app/DTO/error-data';
 import { PostData } from 'src/app/DTO/Forum/Post/post-data';
 import { ForumUserData } from 'src/app/DTO/Forum/forum-user-data';
+import { LikeData } from 'src/app/DTO/Forum/Post/like-data';
 
 @Injectable({
   providedIn: 'root'
@@ -24,4 +25,9 @@ export class PostService {
   {
     return this.http.post<PostData[]>("http://localhost:5062/post/getPostFromForum", data)
   }
+  likePost(data: LikeData)
+  {
+    return this.http.post<LikeData>("http://localhost:5062/post/likePost", data)
+  }
+  
 }

@@ -1,5 +1,6 @@
 export interface PostData
 {
+    id: number,
     titulo: string,
     conteudo: string,
     anexo: string,
@@ -7,5 +8,7 @@ export interface PostData
     forumID: number,
     dataCriacao: Date,
     nomeAutor: string,
-    nomeForum: string
+    idAutor:number,
+    nomeForum: string,
+    like : number,
 }

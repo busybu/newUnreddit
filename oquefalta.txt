@@ -1,0 +1,8 @@
+O que preciso arrumar: 
+[ ] Habilitar a função de excluir o post 
+[ ] Deletar Post
+[ ] Dropar o banco para resetar com o datetime normal
+[ ] Arrumar a visualização do perfil do usuário (pegar todas as funções necessárias)
+[ ] Arrumar a visualização da senha ao criar o usuário 
+[ ] Habilitar as funções do dropdown do nav 
+[ ] Deletar fórum 

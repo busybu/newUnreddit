@@ -26,7 +26,6 @@ public class PostRepository : IPostRepository
         ctx.Posts.Remove(obj);
         await ctx.SaveChangesAsync();
     }
-
     public async Task<List<Post>> Filter(Expression<Func<Post, bool>> exp)
     {
         var query = ctx.Posts.Where(exp);
@@ -39,17 +38,68 @@ public class PostRepository : IPostRepository
         ctx.Posts.Update(obj);
         await ctx.SaveChangesAsync();
     }
+    public async Task<Post> Find(int id)
+    {
+        var post = await ctx.Posts.FindAsync(id);
+        return post;
+    }
+
     public async Task<List<Post>> FindAll()
     {
         var posts = ctx.Posts.Where(u => true);
         return await posts.ToListAsync();
     }
 
-     public async Task<List<Post>> GetPostsForum(int id)
+    public async Task<List<Post>> GetPostsForum(int id)
     {
         var query = ctx
             .Posts
             .Where(u => u.Forum == id);
         return await query.ToListAsync();
+    }
+    public async Task Like(Post post, Usuario user)
+    {
+        UpVote like = new UpVote()
+        {
+            Post = post.Id,
+            Usuario = user.Id
+        };
+
+        await ctx.UpVotes.AddAsync(like);
+        await ctx.SaveChangesAsync();
+    }
+    public async Task<int> GetLikes(Post post)
+    {
+        var query = ctx
+        .UpVotes.
+        Where(u => u.Post == post.Id);
+        int likes = await query.CountAsync();
+        return likes;
+    }
+    public async Task<bool> isLiked(Post post, Usuario user)
+    {
+        bool isLike = await ctx
+        .UpVotes.
+        AnyAsync
+        (up => up.Post == post.Id &&
+        up.Usuario == user.Id);
+
+        return isLike;
+    }
+    public async Task Deslike(Post post, Usuario user)
+    {
+        bool isLike = await isLiked(post, user);
+        
+        if (isLike)
+        {
+            UpVote like = new UpVote();
+            like = await ctx.UpVotes.FirstAsync
+            (u => u.Post == post.Id &&
+             u.Usuario == user.Id);
+            ctx.UpVotes.Remove(like);
+        }
+        
+        await ctx.SaveChangesAsync();
+
     }
 }
