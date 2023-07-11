@@ -43,6 +43,13 @@ public class PostRepository : IPostRepository
         var post = await ctx.Posts.FindAsync(id);
         return post;
     }
+    public async Task<Post> FindAutor(int id, int postAutor)
+    {
+        var post = await ctx.Posts.Where
+        (u => u.Id == id && u.Autor == postAutor)
+        .FirstOrDefaultAsync();
+        return post;
+    }
 
     public async Task<List<Post>> FindAll()
     {

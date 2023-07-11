@@ -200,5 +200,41 @@ public class PostController : ControllerBase
         return Ok(result);
     }
 
+    [HttpPost("deletePost")]
+    public async Task<ActionResult> Delete(
+        [FromBody] PostIdDTO postData,
+        [FromServices] IPostRepository postService,
+        [FromServices] IUserRepository userService
+    )
+    {
+        Console.WriteLine("entro");
+        Usuario user;
+        try
+        {
+            user = await userService.ValidateJwt(new JwtValue { Value = postData.Jwt });
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return BadRequest(ex.Message);
+        }
+        if (user is null)
+            return NotFound("Usuário não é válido");
+
+        Post post;
+        try
+        {
+            post = await postService.FindAutor(postData.Id, user.Id);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("êta que nao tem esse post com esse autor");
+            return BadRequest(ex.Message);
+        }
+
+        await postService.Delete(post);
+        return Ok(new ErrorDTO("post deletado"));
+
+    }
 
 }
