@@ -39,10 +39,11 @@ import {MatListModule} from '@angular/material/list';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { UserPageComponent } from './user-page/user-page.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { DeletePostComponent } from './delete-post/delete-post.component';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
     declarations: [
-
         AppComponent,
         PostUserComponent,
         FeedPageComponent,
@@ -59,12 +60,14 @@ import { NotFoundComponent } from './not-found/not-found.component';
         AddUserComponent,
         ListForumsComponent,
         UserPageComponent,
-        NotFoundComponent
+        NotFoundComponent,
+        DeletePostComponent
     ],
     providers: [
     ],
     bootstrap: [AppComponent],
     imports: [
+        MatSnackBarModule,
         MatExpansionModule,
         MatListModule,
         MatDividerModule,

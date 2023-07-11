@@ -23,7 +23,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class CreateForumComponent {
   constructor(private forumService: ForumService, 
-    private router: Router) {
+   private router: Router ) {
 
   }
   responseMessage = "";

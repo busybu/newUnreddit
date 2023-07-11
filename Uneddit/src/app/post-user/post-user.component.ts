@@ -8,6 +8,12 @@ import { LikeData } from '../DTO/Forum/Post/like-data';
 import {
   UserService
 } from '../Services/user-service/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DeletePostComponent } from '../delete-post/delete-post.component';
+import { PostId } from '../DTO/Forum/Post/post-id';
+export interface postId {
+  id: 0
+}
 @Component({
   selector: 'app-post-user',
   templateUrl: './post-user.component.html',
@@ -19,6 +25,11 @@ export class PostUserComponent implements OnInit, OnChanges {
 
   posts: PostData[] = []
   ativo = false
+  
+  postId : PostId = {
+    id : 0,
+    jwt : sessionStorage.getItem("session") ?? ""
+  }
   likeData: LikeData = {
     jwt: '',
     idPost: 0,
@@ -31,9 +42,17 @@ export class PostUserComponent implements OnInit, OnChanges {
     forumId: 0,
     jwt: ''
   }
-
   constructor(private postService: PostService, private userService: UserService,
-    private router: Router) { }
+    private router: Router, public dialog: MatDialog) { }
+
+    openDialog(postid:number) {
+      const dialogRef = this.dialog.open(DeletePostComponent,{
+        data:{
+          postid
+        }
+      });
+
+    }
 
   ngOnChanges() {
     if (this.ForumId == 0)
@@ -112,10 +131,11 @@ export class PostUserComponent implements OnInit, OnChanges {
       .subscribe(res => {
         console.log(res.id)
         myId = res.id
-        console.log("idPoster"+idPoster)
-        console.log("myId"+myId)
+        console.log("idPoster" + idPoster)
+        console.log("myId" + myId)
 
         this.ativo = myId != idPoster
+        this.postId.id = postAtual.id;
       })
 
   }

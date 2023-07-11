@@ -42,7 +42,7 @@
                         <mat-icon>more_vert</mat-icon>
                       </button>
                       <mat-menu #menu="matMenu">
-                        <button mat-menu-item disabled="{{ativo}}">
+                        <button mat-menu-item disabled="{{ativo}}" (click)="openDialog(post.id)">
                           <mat-icon>delete_foreve</mat-icon>
                           <span>Excluir Postagem</span>
                         </button>
